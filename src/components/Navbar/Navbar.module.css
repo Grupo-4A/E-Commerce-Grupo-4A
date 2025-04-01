@@ -1,0 +1,95 @@
+.navbarContainer {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 30px;
+    align-items: center;
+    font-family: sans-serif;
+  }
+  
+  .navbar {
+    display: flex;
+    background-color: #1F2937;
+    border-radius: 25px;;
+    padding: 1px 10px; 
+  }
+  
+  .navbarLeft {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .logo {
+    height: 40px;
+  }
+  
+  .searchBar {
+    display: flex;
+    align-items: center;
+    background-color: #F3F4F6;
+    border-radius: 20px;
+    padding: 3px 10px;
+  }
+  
+  .searchBar input {
+    border: none;
+    background: transparent;
+    outline: none;
+    padding: 5px;
+    width: 300px;
+  }
+  
+  .icon {
+    color: #1F2937;
+    margin-left: 5px;
+  }
+  
+  .navLinks {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+    margin-left: 10px;
+  }
+  
+  .navLinks a {
+    color: #F3F4F6;
+    text-decoration: none;
+    font-weight: 400;
+  }
+  
+  .cartIcon {
+    font-size: 20px;
+    color: #F3F4F6;
+    margin: 20px;
+  }
+  
+  .navbarButtons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .btnLogin {
+    background-color: #1F2937;
+    color: #F3F4F6;
+    border: none;
+    border-radius: 25px;
+    padding: 20px 15px;
+    cursor: pointer;
+  }
+  .btnLogin:hover {
+    background-color: #384557;
+  }
+  
+  .btnRegister {
+    background-color: #60A5FA;
+    color: #F3F4F6;
+    border: none;
+    border-radius: 25px;
+    padding: 20px 15px;
+    cursor: pointer;
+  }
+
+  .btnRegister:hover {
+    background-color: #2563eb;
+  }
+  

@@ -1,0 +1,96 @@
+/* Contenedor principal de las tarjetas */
+.containerCard {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; 
+    margin: 25px; 
+}
+
+/* Estilo de la tarjeta */
+.featuredCards {
+    background-color: #F3F4F6;
+    border-radius: 30px 15px;
+    max-width: 200px;
+    padding: 15px;
+    box-shadow: 0px 6px 8px rgba(15, 15, 15, 0.5);
+    transition: transform 0.2s ease-in-out;
+}
+
+.featuredCards:hover {
+    transform: scale(1.05);
+}
+
+/* Imagen dentro de la tarjeta */
+.cardImage img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+/* Cuerpo de la tarjeta */
+.cardBody {
+    padding: 10px 5px;
+    max-width: 160px;
+}
+
+.cardTitle {
+    margin-top: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.cardDescription {
+    margin-top: 5px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    word-wrap: break-word; /* Rompe las palabras largas */
+    white-space: normal; /* Permite que el texto haga saltos de línea */
+    overflow-wrap: break-word; /* Asegura que el texto no desborde */
+}
+
+.cardPrice {
+    margin-top: 5px;
+    text-align: right;
+    font-size: 18px;
+    font-weight: bold;
+    color: #1E3A8A;
+}
+
+/* Pie de la tarjeta */
+.cardFooter {
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5px;
+}
+
+/* Botón de comprar */
+.cardFooter button {
+    background-color: #10B981;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.cardFooter button:hover {
+    background-color: #0da371;
+}
+
+/* Icono del carrito */
+.cardCartIcon {
+    font-size: 25px;
+    color: #10B981;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.cardCartIcon:hover {
+    color: #0da371;
+}
