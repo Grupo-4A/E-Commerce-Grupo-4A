@@ -1,7 +1,10 @@
 import { FiSearch, FiShoppingCart } from 'react-icons/fi';
 import styles from './Navbar.module.css';
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
   return (
     <div className={styles.navbarContainer}>
       <nav className={styles.navbar}>
@@ -13,7 +16,7 @@ const Navbar = () => {
           </div>
           <ul className={styles.navLinks}>
             <li><a href="#">Inicio</a></li>
-            <li><a href="#">Categorías</a></li>
+            <li><a href="/catalogo">Categorías</a></li>
             <li><a href="#">Ofertas</a></li>
             <li><a href="#">Blog</a></li>
             <li><a href="#">Soporte</a></li>
@@ -23,7 +26,12 @@ const Navbar = () => {
       </nav>
 
       <div className={styles.navbarButtons}>
-        <button className={styles.btnLogin}>Iniciar Sesión</button>
+        <button
+          className={styles.btnLogin}
+          onClick={() => navigate("/login")}
+        >
+          Iniciar Sesión
+        </button>
         <button className={styles.btnRegister}>Regístrate</button>
       </div>
     </div>

@@ -52,7 +52,7 @@ export const Inicio = () => {
       credentials.password === "password123"
     ) {
       localStorage.setItem("isAuthenticated", "true");
-      navigate("/busqueda");
+      navigate("/");
     } else {
       alert("Credenciales incorrectas");
     }
