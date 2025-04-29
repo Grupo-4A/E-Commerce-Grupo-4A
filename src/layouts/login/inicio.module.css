@@ -1,0 +1,266 @@
+/* Importa la fuente Montserrat desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+/* Estilos específicos para el componente de inicio/registro */
+/* Estos estilos no afectarán al index.css global */
+
+/* Animación de transición */
+.transitioning {
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+/* Contenedor principal que ocupa toda la vista del navegador y centra el contenido */
+.page_container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Layout de página con dos secciones horizontales */
+.full_page_layout {
+  display: flex;
+  width: 70%;
+  height:100%;
+  max-width: 2000px;
+  max-height: 600px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: white;
+  justify-content: center; /* Centrado horizontal */
+  align-items: center; /* Centrado vertical */
+}
+
+/* Estilos para la sección izquierda del login */
+.left_section {
+  background-color: #1E3A8A; /* azul */
+  width: 40%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+/* Estilos para la sección derecha del login */
+.right_section {
+  background-color: #fff;
+  width: 60%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Estilos para la sección izquierda del registro */
+.left_section_register {
+  background-color: #fff;
+  width: 60%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Estilos para la sección derecha del registro */
+.right_section_register {
+  background-color: #1E3A8A; /* azul */
+  width: 40%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+/* Centrado del contenido dentro de cada sección */
+.left_content, 
+.right_content {
+  width: 100%;
+  max-width: 350px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Estilos para el contenedor del formulario */
+.form_container {
+  width: 100%;
+  max-width: 350px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Títulos grandes dentro del contenido */
+.left_content h1, 
+.right_content h1, 
+.form_container h1 {
+  font-size: 32px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  color: inherit;
+}
+
+/* Párrafos de descripción */
+.left_content p, 
+.right_content p {
+  font-size: 16px;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+/* Color de título del formulario */
+.form_container h1 {
+  color: #000;
+}
+
+/* Subtítulo del formulario */
+.subtitle {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+
+/* Grupo de formulario: controla el espaciado de cada campo */
+.form_group {
+  width: 100%;
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+/* Etiqueta del campo del formulario */
+.form_group label {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 6px;
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Campos de entrada del formulario */
+.form_group input {
+  width: 100%;
+  height: 40px;
+  padding: 0 15px;
+  font-size: 14px;
+  border: 1px solid #1E3A8A;
+  border-radius: 8px;
+  outline: none;
+  color: #333;
+  background-color: white;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Efecto al hacer foco en los inputs */
+.form_group input:focus {
+  border-color: #152b66;
+  box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.1);
+}
+
+/* Botón azul */
+.blue_button {
+  background-color: #1E3A8A;
+  color: white;
+  width: 100%;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 16px;
+  transition: background-color 0.3s;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+}
+
+/* Efecto hover para el botón azul */
+.blue_button:hover {
+  background-color: #152b66;
+}
+
+/* Botón blanco con borde */
+.white_button {
+  background-color: transparent;
+  color: white;
+  padding: 10px 24px;
+  border: 2px solid white;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Efecto hover para el botón blanco */
+.white_button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Estilos responsivos para pantallas medianas */
+@media (max-width: 1200px) {
+  .full_page_layout {
+    width: 85%;
+    height: 75%;
+  }
+}
+
+/* Estilos responsivos para pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+  .full_page_layout {
+    flex-direction: column;
+    width: 90%;
+    height: auto;
+    max-height: 90%;
+  }
+
+  .left_section, 
+  .right_section,
+  .left_section_register, 
+  .right_section_register {
+    width: 100%;
+    padding: 20px;
+  }
+
+  /* Para la sección de registro */
+  .left_section_register {
+    background-color: #fff;
+    height: auto;
+  }
+
+  .right_section_register {
+    background-color: #1E3A8A;
+    height: auto;
+  }
+
+  .form_container {
+    padding: 20px;
+    max-width: 100%;
+  }
+
+  /* Ajustes en el formulario de registro */
+  .form_group {
+    margin-bottom: 12px;
+  }
+
+  .blue_button {
+    margin-top: 12px;
+  }
+}
