@@ -1,14 +1,21 @@
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import { FiSearch, FiShoppingCart } from 'react-icons/fi';
 import styles from './Navbar.module.css';
 
 const Navbar = () => {
+
+
   return (
     <div className={styles.navbarContainer}>
       <nav className={styles.navbar}>
         <div className={styles.navbarLeft}>
           <img src="" alt="Logo" className={styles.logo} />
           <div className={styles.searchBar}>
-            <input type="text" placeholder="Buscar..." />
+            <input
+              type="text"
+              placeholder="Buscar..."
+            />
             <FiSearch className={styles.icon} />
           </div>
           <ul className={styles.navLinks}>
