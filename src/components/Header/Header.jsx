@@ -22,26 +22,52 @@ const Header = () => {
     };
 return(
     <div className={styles.headerContainer}>
-        <div className={styles.header}>
-            <div className={styles.headerLeft}>
-                <h1 className={styles.title}>Todo lo que necesitas para desarrolar, diseñar y crear,
-                     en un solo lugar
-                </h1>
-                
-                <button className={styles.buttons}>Software</button>
-                <button className={styles.buttons}>Hardware</button>
-                <button className={styles.buttons}>Plantilla Frontend</button>
-            </div>
-           <div className={styles.headerRight}>
-                <Slider {...settings}>
-                    <div><img src={producto1} alt="Producto 1" /></div>
-                    <div><img src={producto2} alt="Producto 2" /></div>
-                    <div><img src={producto3} alt="Producto 3" /></div>
-                </Slider>
-            </div>
-        </div>
-
+  <div className={styles.header}>
+    <div className={styles.leftColumn}>
+      <div className={styles.headerLeft}>
+        <div className={styles.titleOverlay}>Software</div>
+            <Slider {...settings}>
+                <div className={styles.slide}>
+                    <img src={producto1} alt="Software" />
+                    <div className={styles.overlay}></div>
+                </div>
+                <div className={styles.slide}>
+                    <img src={producto2} alt="Software 2" />
+                    <div className={styles.overlay}></div>
+                </div>
+            </Slider>
+      </div>
+      <div className={styles.headerLeft}>
+        <div className={styles.titleOverlay}>Hardware</div>
+        <Slider className={styles.slide}{...settings}>
+                <div className={styles.slide}>
+                            <img src={producto1} alt="Software" />
+                            <div className={styles.overlay}></div>
+                        </div>
+                <div className={styles.slide}>
+                    <img src={producto2} alt="Software 2" />
+                    <div className={styles.overlay}></div>
+                </div>
+        </Slider>
+      </div>
     </div>
+
+    <div className={styles.headerRight}>
+    <div className={styles.titleOverlay}>Plantillas</div>
+      <Slider {...settings}>
+      <div className={styles.slideRight}>
+                            <img src={producto1} alt="Software" />
+                            <div className={styles.overlay}></div>
+                        </div>
+                <div className={styles.slideRight}>
+                    <img src={producto2} alt="Software 2" />
+                    <div className={styles.overlay}></div>
+                </div>
+        <div className={styles.slideRight}><img src={producto3} alt="Producto 3" /><div className={styles.overlay}></div></div>
+      </Slider>
+    </div>
+  </div>
+</div>
 );
 };
 

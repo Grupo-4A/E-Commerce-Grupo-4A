@@ -1,62 +1,63 @@
-import { Button, Card, Image, Text } from "@chakra-ui/react"
+// components/ProductCard.jsx
+import { Button, Card, Image, Text } from "@chakra-ui/react";
 import { FiShoppingCart } from "react-icons/fi";
-const Productcard = () => {
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+
+const ProductCard = ({ product }) => {
   return (
-    <div className="Container-product-list">
-      
-      <Card.Root   display="flex" flexDirection="column"
-                flex="0 0 auto"
-                m="10px"
-                minW="200px"
-                maxW="300px"
-                p="10px"
-                maxH="460px"
-              boxShadow="0px 6px 8px rgba(15, 15, 15, 0.5)"
-              transition="transform 0.2s ease-in-out"
-              _hover={{ transform: "scale(1.05)" }}
-              bg="#F3F4F6"
-              borderRadius="20px"
-              >
-
-      <Image w="100%" h="150px"  objectFit="cover" borderRadius="10px"
-        src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-        alt="Green double couch with wooden legs"
+    <Card.Root
+      maxW="250px"
+      display="flex"
+      flexWrap="wrap"
+      gap="5px"
+      borderRadius="15px"
+      overflow="hidden"
+      maxH="460px"
+      boxShadow="0px 6px 8px rgba(15, 15, 15, 0.5)"
+      transition="transform 0.2s ease-in-out"
+      _hover={{ transform: "scale(1.05)" }}
+      bg="#F3F4F6"
+      m="10px"
+    >
+      <Image
+        w="100%"
+        objectFit="cover"
+        src={product.image}
+        alt={product.name}
       />
-
-      <Card.Body gap="2" p="10px 5px" maxW="160px" > 
-
-        <Card.Title mt="5px" fontSize="18px" fontWeight="bold" mb="5px">Titulo</Card.Title>
-
-        <Card.Description mt="5px" fontSize="14px" 
-        mb="10px" wordBreak="break-word"
-        whiteSpace="normal" overflowWrap="break-word">
-          This sofa is perfect for modern tropical spaces.
-        </Card.Description> 
-
-        <Text fontSize="18px" fontWeight="bold" mt="5px" textAlign="right" color="#1E3A8A">
-          $450.000
+      <Card.Body gap="2" maxW="260px">
+        <Card.Title>{product.name}</Card.Title>
+        <Card.Description wordBreak="break-word" whiteSpace="normal" overflowWrap="break-word">
+          {product.description}
+        </Card.Description>
+        <Text display="flex" justifyContent="flex-end" color="gold" fontSize="18px" pr="2">
+          <AiFillStar />
+          <AiFillStar />
+          <AiFillStar />
+          <AiFillStar />
+          <AiOutlineStar />
+        </Text>
+        <Text textStyle="2xl" fontWeight="medium" letterSpacing="tight" textAlign="right" color="#1E3A8A">
+          ${product.price}
         </Text>
       </Card.Body>
-
-      <Card.Footer mt="5px" gap="2" justifyContent="flex-end" p="10px 5px">
-
-         <FiShoppingCart size="25px" 
-                        color="#10B981" 
-                        cursor="pointer" 
-                        transition="background 0.3s"
-                        _hover={{ bg: "#059669" }}
-  
-                        />
-        
-        <Button  bg="#10B981" color="white" border="none" 
-                p="8px 12px" borderRadius="10px" cursor="pointer" 
-                fontSize="14px" transition="background 0.3s"_hover={{ bg: "#059669" }} 
-                >Comprar</Button>
+      <Card.Footer gap="2" mt="5px" justifyContent="flex-end" p="10px 5px">
+        <Button
+          variant="ghost"
+          bg="#10B981"
+          color="white"
+          borderRadius="10px"
+          cursor="pointer"
+          fontSize="14px"
+          transition="background 0.3s"
+          _hover={{ bg: "#059669" }}
+        >
+          <FiShoppingCart />
+          Add to cart
+        </Button>
       </Card.Footer>
     </Card.Root>
-      
-    </div>
   );
 };
 
-export default Productcard;
+export default ProductCard;

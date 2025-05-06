@@ -1,49 +1,47 @@
 .headerContainer {
   display: flex;
-  margin: 25px;
-  padding: 1rem;
-  background-color: #1F2937;
-  border-radius: 75px 30px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  gap: 2rem;
+  padding: 2rem;
+  border-radius: 40px;
 }
-
 .header {
   display: flex;
   justify-content: space-between;
   gap: 2rem;
   flex-wrap: wrap;
-  width: 100%;
+  margin: 0px 5px 0px 70px;
+}
+/* Nuevo contenedor para apilar headerLeft */
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 1rem;
+  min-width: 250px;
+  max-width: 500px;
 }
 
 .headerLeft {
   flex: 1;
-  min-width: 300px;
+  min-width: 250px;
+  max-width: 500px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 30px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
 }
-
-.title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 3rem; 
-  margin-left: 50px;
-  color: #F3F4F6;
+.headerLeft:hover {
+  transform: scale(1.05);
 }
-
-.buttons {
-  display: flex;
-  margin-top: 30px;
-  margin-left: 50px;
-  background-color: #3B82F6;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  margin-right: 10px;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+.headerLeft .slick-list {
+  border-radius: 20px; 
+  overflow: hidden;
 }
-
-.buttons:hover {
-  background-color: #2563eb;
+.headerLeft img {
+  width: 100%;
+  height: 250px;
+  padding: 0px; 
+  object-fit: cover;
 }
 
 .headerRight {
@@ -52,16 +50,58 @@
   max-width: 500px;
   overflow: hidden;
   position: relative;
-  border-radius: 20px;
+  border-radius: 30px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
 .headerRight .slick-list {
   border-radius: 20px; 
   overflow: hidden;
 }
-
+.headerRight:hover {
+  transform: scale(1.05);
+}
 .headerRight img {
   width: 95%;
-  height: 450px; 
-  border-radius: 40px;
+  height: 522px;
+  padding: 5px 0px; 
+  border-radius: 5px;
   object-fit: cover;
+}
+
+.slide, .slideRight {
+  position: relative;
+  width: 100%;
+  height: 100%; /* Ocupa todo el alto del contenedor padre */
+  overflow: hidden;
+}
+.slide img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+}
+/* Sombra oscura superpuesta */
+.overlay {
+  position: absolute;
+  inset: 0; /* top: 0; right: 0; bottom: 0; left: 0 */
+  background: rgba(0, 0, 0, 0.6); /* efecto de sombra interna */
+  z-index: 1;
+}
+
+/* Título sobre la imagen */
+.titleOverlay {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 2;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+.slideRight img {
+  width: 100%;
+  height: 522px;
+  object-fit: cover;
+  display: block;
 }

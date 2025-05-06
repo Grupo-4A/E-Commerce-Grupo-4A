@@ -1,24 +1,23 @@
-import { useEffect, useState } from 'react';
+
 import { Flex, Box } from "@chakra-ui/react";
-import { useLocation } from 'react-router-dom';
+
 import ProductCard from "../components/ProductCard/Productcard.jsx";
 import Filters from "../components/Filters/Filters.jsx";
 import products from "../data/products.js";
 
 const ProductListPage = () => {
-
   return (
     <Flex
-      mt="80px"
+      mt="20px"
       px="20px"
       gap="20px"
       align="flex-start"
-      bg="#1E3A8A"
+      bg="#2C5282"
       minH="100vh"
     >
-        <Filters />
+      <Filters />
 
-      {/* Tarjetas */}
+      {/* Contenedor de tarjetas */}
       <Box
         flex="1"
         display="flex"
@@ -26,11 +25,9 @@ const ProductListPage = () => {
         gap="20px"
         justifyContent="flex-start"
       >
-        {/* Renderizar múltiples tarjetas */}
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
       </Box>
     </Flex>
   );

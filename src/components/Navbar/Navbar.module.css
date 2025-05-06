@@ -75,6 +75,7 @@
     border-radius: 25px;
     padding: 20px 15px;
     cursor: pointer;
+    margin-left: 80px;
   }
   .btnLogin:hover {
     background-color: #384557;
