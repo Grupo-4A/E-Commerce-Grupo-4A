@@ -1,16 +1,14 @@
 /* Importa la fuente Montserrat desde Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
-/* Estilos específicos para el componente de inicio/registro */
-/* Estos estilos no afectarán al index.css global */
-
-/* Animación de transición */
+/* Animación de transición suave */
 .transitioning {
   opacity: 0.5;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+  transform: scale(0.98);
 }
 
-/* Contenedor principal que ocupa toda la vista del navegador y centra el contenido */
+/* Contenedor principal */
 .page_container {
   width: 100%;
   height: 100vh;
@@ -25,33 +23,35 @@
   left: 0;
 }
 
-/* Layout de página con dos secciones horizontales */
+/* Layout de página con esquinas más curvas */
 .full_page_layout {
   display: flex;
   width: 70%;
-  height:100%;
+  height: 100%;
   max-width: 2000px;
   max-height: 600px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  border-radius: 12px;
+  border-radius: 20px;
   overflow: hidden;
   background-color: white;
-  justify-content: center; /* Centrado horizontal */
-  align-items: center; /* Centrado vertical */
+  justify-content: center;
+  align-items: center;
+  transition: all 0.6s ease-in-out;
 }
 
-/* Estilos para la sección izquierda del login */
+/* Sección izquierda de login */
 .left_section {
-  background-color: #1E3A8A; /* azul */
+  background-color: #1F2937; /* nuevo color */
   width: 40%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
+  transition: all 0.5s ease-in-out;
 }
 
-/* Estilos para la sección derecha del login */
+/* Sección derecha de login */
 .right_section {
   background-color: #fff;
   width: 60%;
@@ -59,9 +59,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: all 0.5s ease-in-out;
 }
 
-/* Estilos para la sección izquierda del registro */
+/* Sección izquierda del registro */
 .left_section_register {
   background-color: #fff;
   width: 60%;
@@ -69,33 +70,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: all 0.5s ease-in-out;
 }
 
-/* Estilos para la sección derecha del registro */
+/* Sección derecha del registro */
 .right_section_register {
-  background-color: #1E3A8A; /* azul */
+  background-color: #1F2937; /* nuevo color */
   width: 40%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
+  transition: all 0.5s ease-in-out;
 }
 
-/* Centrado del contenido dentro de cada sección */
+/* Contenido centrado */
 .left_content, 
-.right_content {
-  width: 100%;
-  max-width: 350px;
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-/* Estilos para el contenedor del formulario */
+.right_content,
 .form_container {
   width: 100%;
   max-width: 350px;
@@ -107,7 +99,7 @@
   text-align: center;
 }
 
-/* Títulos grandes dentro del contenido */
+/* Títulos */
 .left_content h1, 
 .right_content h1, 
 .form_container h1 {
@@ -117,7 +109,7 @@
   color: inherit;
 }
 
-/* Párrafos de descripción */
+/* Descripciones */
 .left_content p, 
 .right_content p {
   font-size: 16px;
@@ -125,26 +117,26 @@
   line-height: 1.5;
 }
 
-/* Color de título del formulario */
+/* Título del formulario */
 .form_container h1 {
   color: #000;
 }
 
-/* Subtítulo del formulario */
+/* Subtítulo */
 .subtitle {
   color: #666;
   font-size: 14px;
   margin-bottom: 24px;
 }
 
-/* Grupo de formulario: controla el espaciado de cada campo */
+/* Grupo de formulario */
 .form_group {
   width: 100%;
   margin-bottom: 16px;
   text-align: left;
 }
 
-/* Etiqueta del campo del formulario */
+/* Etiqueta del campo */
 .form_group label {
   font-size: 14px;
   color: #555;
@@ -153,34 +145,34 @@
   font-family: 'Montserrat', sans-serif;
 }
 
-/* Campos de entrada del formulario */
+/* Campo de entrada */
 .form_group input {
   width: 100%;
   height: 40px;
   padding: 0 15px;
   font-size: 14px;
-  border: 1px solid #1E3A8A;
-  border-radius: 8px;
+  border: 1px solid #1F2937;
+  border-radius: 12px;
   outline: none;
   color: #333;
   background-color: white;
   font-family: 'Montserrat', sans-serif;
 }
 
-/* Efecto al hacer foco en los inputs */
+/* Foco del input */
 .form_group input:focus {
-  border-color: #152b66;
-  box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.1);
+  border-color: #111827;
+  box-shadow: 0 0 0 2px rgba(31, 41, 55, 0.1);
 }
 
 /* Botón azul */
 .blue_button {
-  background-color: #1E3A8A;
+  background-color: #1F2937;
   color: white;
   width: 100%;
   height: 40px;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -190,9 +182,9 @@
   text-transform: uppercase;
 }
 
-/* Efecto hover para el botón azul */
+/* Hover del botón azul */
 .blue_button:hover {
-  background-color: #152b66;
+  background-color: #111827;
 }
 
 /* Botón blanco con borde */
@@ -201,7 +193,7 @@
   color: white;
   padding: 10px 24px;
   border: 2px solid white;
-  border-radius: 8px;
+  border-radius: 12px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -209,12 +201,12 @@
   font-family: 'Montserrat', sans-serif;
 }
 
-/* Efecto hover para el botón blanco */
+/* Hover del botón blanco */
 .white_button:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Estilos responsivos para pantallas medianas */
+/* Responsive - pantallas medianas */
 @media (max-width: 1200px) {
   .full_page_layout {
     width: 85%;
@@ -222,13 +214,14 @@
   }
 }
 
-/* Estilos responsivos para pantallas pequeñas (móviles) */
+/* Responsive - móviles */
 @media (max-width: 768px) {
   .full_page_layout {
     flex-direction: column;
     width: 90%;
     height: auto;
     max-height: 90%;
+    border-radius: 16px;
   }
 
   .left_section, 
@@ -239,14 +232,13 @@
     padding: 20px;
   }
 
-  /* Para la sección de registro */
   .left_section_register {
     background-color: #fff;
     height: auto;
   }
 
   .right_section_register {
-    background-color: #1E3A8A;
+    background-color: #1F2937;
     height: auto;
   }
 
@@ -255,7 +247,6 @@
     max-width: 100%;
   }
 
-  /* Ajustes en el formulario de registro */
   .form_group {
     margin-bottom: 12px;
   }
@@ -263,4 +254,31 @@
   .blue_button {
     margin-top: 12px;
   }
+}
+.form_group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.form_group label {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.form_group input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.form_container h1 svg {
+  margin-right: 8px;
+  vertical-align: middle;
+  color: #007bff;
 }

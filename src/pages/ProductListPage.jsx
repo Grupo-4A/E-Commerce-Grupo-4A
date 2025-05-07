@@ -15,7 +15,7 @@ const ProductListPage = () => {
       bg="#2C5282"
       minH="100vh"
     >
-      <Filters />
+      <Filters />nhn
 
       {/* Contenedor de tarjetas */}
       <Box

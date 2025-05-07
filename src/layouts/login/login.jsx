@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaUserAlt, FaEnvelope, FaLock } from "react-icons/fa";
 import styles from "./inicio.module.css";
 
 export const Inicio = () => {
@@ -67,7 +68,6 @@ export const Inicio = () => {
   return (
     <div className={`${styles.page_container} ${isTransitioning ? styles.transitioning : ""}`}>
       {!isRegistering ? (
-        // Login Screen - 50/50 Split Layout
         <div className={styles.full_page_layout}>
           <div className={styles.left_section}>
             <div className={styles.left_content}>
@@ -84,35 +84,35 @@ export const Inicio = () => {
               </button>
             </div>
           </div>
-          
+
           <div className={styles.right_section}>
             <div className={styles.form_container}>
-              <h1>Iniciar sesión</h1>
+              <h1><FaUserAlt /> Iniciar sesión</h1>
               <p className={styles.subtitle}>Ingresar correo y contraseña</p>
-              
+
               <form onSubmit={handleLoginSubmit}>
                 <div className={styles.form_group}>
-                  <label>Usuario</label>
+                  <label><FaEnvelope /> Usuario</label>
                   <input
                     type="email"
                     name="email"
                     value={credentials.email}
                     onChange={handleLoginChange}
-                    placeholder=""
+                    placeholder="Correo electrónico"
                   />
                 </div>
-                
+
                 <div className={styles.form_group}>
-                  <label>Contraseña</label>
+                  <label><FaLock /> Contraseña</label>
                   <input
                     type="password"
                     name="password"
                     value={credentials.password}
                     onChange={handleLoginChange}
-                    placeholder=""
+                    placeholder="Contraseña"
                   />
                 </div>
-                
+
                 <button type="submit" className={styles.blue_button}>
                   INICIAR
                 </button>
@@ -121,65 +121,64 @@ export const Inicio = () => {
           </div>
         </div>
       ) : (
-        // Register Screen - 50/50 Split Layout (reversed)
         <div className={styles.full_page_layout}>
           <div className={styles.left_section_register}>
             <div className={styles.form_container}>
-              <h1>Registro</h1>
+              <h1><FaUserAlt /> Registro</h1>
               <p className={styles.subtitle}>Ingresa los datos solicitados</p>
-              
+
               <form onSubmit={handleRegisterSubmit}>
                 <div className={styles.form_group}>
-                  <label>Usuario</label>
+                  <label><FaUserAlt /> Usuario</label>
                   <input
                     type="text"
                     name="username"
                     value={registerData.username}
                     onChange={handleRegisterChange}
-                    placeholder=""
+                    placeholder="Nombre de usuario"
                   />
                 </div>
-                
+
                 <div className={styles.form_group}>
-                  <label>Correo</label>
+                  <label><FaEnvelope /> Correo</label>
                   <input
                     type="email"
                     name="email"
                     value={registerData.email}
                     onChange={handleRegisterChange}
-                    placeholder=""
+                    placeholder="Correo electrónico"
                   />
                 </div>
-                
+
                 <div className={styles.form_group}>
-                  <label>Contraseña</label>
+                  <label><FaLock /> Contraseña</label>
                   <input
                     type="password"
                     name="password"
                     value={registerData.password}
                     onChange={handleRegisterChange}
-                    placeholder=""
+                    placeholder="Contraseña"
                   />
                 </div>
-                
+
                 <div className={styles.form_group}>
-                  <label>Confirmar contraseña</label>
+                  <label><FaLock /> Confirmar contraseña</label>
                   <input
                     type="password"
                     name="confirmPassword"
                     value={registerData.confirmPassword}
                     onChange={handleRegisterChange}
-                    placeholder=""
+                    placeholder="Confirmar contraseña"
                   />
                 </div>
-                
+
                 <button type="submit" className={styles.blue_button}>
                   REGISTRAR
                 </button>
               </form>
             </div>
           </div>
-          
+
           <div className={styles.right_section_register}>
             <div className={styles.right_content}>
               <h1>Bienvenido</h1>
