@@ -23,7 +23,7 @@ const Navbar = () => {
             <li><a onClick={() => navigate("/categorias")}>Categorías</a></li>
             <li><a onClick={() => navigate ("/ofertas")}>Ofertas</a></li>
             <li><a href="#">Blog</a></li>
-            <li><a href="#">Soporte</a></li>
+            <li><a onClick={() => navigate ("soporte")}>Soporte</a></li>
           </ul>
           <FiShoppingCart className={styles.cartIcon} />
         </div>

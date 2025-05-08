@@ -5,6 +5,7 @@ import { Inicio } from "../layouts/login/login";
 import ProductListPage from "../pages/ProductListPage";
 import UserProfilePage from "../pages/UserProfilePage";
 import OffersPage from "../pages/OffersPage";
+import SupportPage from "../pages/SupportPage";
 
 const router = createBrowserRouter([
   {
@@ -21,8 +22,11 @@ const router = createBrowserRouter([
       },
       {path: "ofertas",
         element: <OffersPage />,
-         },
-      
+      },
+      {
+        path: "soporte",
+        element: <SupportPage />,
+      },
     ],
   },
   {
