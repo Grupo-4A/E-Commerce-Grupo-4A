@@ -1,6 +1,6 @@
 import Software from '../../assets/btnSof.jpg';
 import Plantillas from '../../assets/btnPlan.jpg';
-import Hardware from '../../assets/btnHar.jpg';
+import Hardware from '../../assets/ram.png';
 
 const Shortcut = () => {
   return (

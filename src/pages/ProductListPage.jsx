@@ -1,6 +1,5 @@
 
 import { Flex, Box } from "@chakra-ui/react";
-
 import ProductCard from "../components/ProductCard/Productcard.jsx";
 import Filters from "../components/Filters/Filters.jsx";
 import products from "../data/products.js";

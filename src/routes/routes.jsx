@@ -6,6 +6,7 @@ import ProductListPage from "../pages/ProductListPage";
 import UserProfilePage from "../pages/UserProfilePage";
 import OffersPage from "../pages/OffersPage";
 import SupportPage from "../pages/SupportPage";
+import NewsPage from "../pages/NewsPage";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       },
       {path: "ofertas",
         element: <OffersPage />,
+      },
+      {
+        path: "blog",
+        element: <NewsPage />,
       },
       {
         path: "soporte",

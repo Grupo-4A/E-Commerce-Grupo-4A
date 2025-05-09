@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import { FiSearch, FiShoppingCart } from 'react-icons/fi';
-
 import Logo from '../../assets/Logo.png';
 
 const Navbar = () => {
@@ -23,7 +22,7 @@ const Navbar = () => {
             <li><a onClick={() => navigate("/")}>Inicio</a></li>
             <li><a onClick={() => navigate("/categorias")} >Categorías</a></li>
             <li><a onClick={() => navigate("/ofertas")} >Ofertas</a></li>
-            <li><a href="#">Blog</a></li>
+            <li><a onClick={() => navigate("/blog")}>Blog</a></li>
             <li><a onClick={() => navigate("/soporte")}>Soporte</a></li>
           </ul>
           <FiShoppingCart className="text-white text-xl ml-5" />
