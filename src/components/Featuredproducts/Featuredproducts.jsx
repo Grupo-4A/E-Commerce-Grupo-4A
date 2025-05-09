@@ -1,94 +1,59 @@
-import { Button, Card, Image, Text, Box } from "@chakra-ui/react";
 import { FiShoppingCart } from "react-icons/fi";
-import { useNavigate } from "react-router-dom"; // <-- IMPORTANTE
+import { useNavigate } from "react-router-dom";
 
 const FeaturedProducts = ({ products }) => {
-  const navigate = useNavigate(); // <-- HOOK DE NAVEGACIÓN
+  const navigate = useNavigate();
 
   return (
-    <Box display="flex" flexDirection="column" alignItems="center" m="25px">
-      <Box display="flex" flexWrap="wrap" gap="20px" justifyContent="center">
+    <div className="bg-gray-800 flex flex-col items-center m-8 p-8 rounded-[30px]">
+      <div className="w-full max-w-6xl mb-8">
+        <h2 className="text-3xl font-bold text-center text-gray-100">Productos Destacados</h2>
+      </div>
+      <div className="flex flex-wrap gap-5 justify-center">
         {products.map((product) => (
-          <Card.Root
+          <div
             key={product.id}
-            display="flex"
-            flexDirection="column"
-            gap="5px"
-            overflow="hidden"
-            variant="ghost"
-            borderRadius="30px 15px"
-            maxW="200px"
-            p="10px"
-            maxH="460px"
-            boxShadow="0px 6px 8px rgba(15, 15, 15, 0.5)"
-            transition="transform 0.2s ease-in-out"
-            _hover={{ transform: "scale(1.05)" }}
-            bg="#F3F4F6"
+            className="flex flex-col gap-[5px] overflow-hidden bg-gray-100 rounded-[30px_15px] max-w-[200px] p-[10px] max-h-[460px] shadow-[0_6px_8px_rgba(15,15,15,0.5)] transition-transform duration-200 ease-in-out hover:scale-105"
           >
-            <Image
-              w="100%"
-              h="150px"
-              objectFit="cover"
-              borderRadius="15px"
+            <img
+              className="w-full h-[150px] object-cover rounded-[15px]"
               src={product.image}
               alt={product.name}
             />
 
-            <Card.Body gap="2" p="10px 5px" maxW="160px">
-              <Card.Title mt="5px" fontSize="18px" fontWeight="bold" mb="5px">
+            <div className="flex flex-col gap-0.5 p-[10px_5px] max-w-[160px]">
+              <h3 className="mt-[5px] text-sm font-bold mb-[5px]">
                 {product.name}
-              </Card.Title>
+              </h3>
 
-              <Card.Description
-                mt="5px"
-                fontSize="14px"
-                mb="10px"
-                wordBreak="break-word"
-                whiteSpace="normal"
-                overflowWrap="break-word"
-              >
+              <p className="mt-[5px] text-xs mb-[10px] break-words whitespace-normal overflow-wrap-break-word">
                 {product.description}
-              </Card.Description>
+              </p>
 
-              <Text fontSize="18px" fontWeight="bold" mt="5px" textAlign="right" color="#1E3A8A">
+              <p className="text-lg font-bold mt-[5px] text-right text-blue-900">
                 ${product.price}
-              </Text>
-            </Card.Body>
+              </p>
+            </div>
 
-            <Card.Footer mt="5px" gap="2" justifyContent="flex-end" p="10px 5px">
-              <FiShoppingCart size="25px" color="#10B981" cursor="pointer" />
-              <Button
-                bg="#10B981"
-                color="white"
-                border="none"
-                p="8px 12px"
-                borderRadius="10px"
-                cursor="pointer"
-                fontSize="14px"
-                transition="background 0.3s"
-                _hover={{ bg: "#059669" }}
+            <div className="flex gap-0.5 justify-end p-[10px_5px] mt-[5px]">
+              <FiShoppingCart size="25px" className="text-emerald-500 cursor-pointer" />
+              <button
+                className="bg-emerald-500 text-white border-none p-[8px_12px] rounded-[10px] cursor-pointer text-sm transition-colors duration-300 hover:bg-emerald-600"
               >
                 Comprar
-              </Button>
-            </Card.Footer>
-          </Card.Root>
+              </button>
+            </div>
+          </div>
         ))}
-      </Box>
+      </div>
 
-      {/* Botón para ver todos los productos */}
-      <Button
-        mt="30px"
-        bg="#60A5FA"
-        color="white"
-        borderRadius="10px"
-        p="10px 20px"
-        fontSize="16px"
-        _hover={{ bg: "#2563eb" }}
-        onClick={() => navigate("/categorias")} // <-- Ajusta esta ruta según tu router
+      <button
+        className="mt-10 bg-blue-400 text-white rounded-[10px] p-[12px_24px] text-base transition-colors duration-300 hover:bg-blue-600"
+        onClick={() => navigate("/categorias")}
       >
         Ver todos los productos
-      </Button>
-    </Box>
+      </button>
+    </div>
   );
 };
 

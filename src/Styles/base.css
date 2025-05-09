@@ -1,0 +1,71 @@
+/* Carga las capas de Tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Importa la fuente Space Mono desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+/* Reset básico + globales */
+html, body {
+    @apply m-0 p-0 box-border;
+    @apply bg-azulProfundo text-grisOscuro;
+    @apply font-mono antialiased min-h-screen;
+    
+    display: grid; /* necesario para que place-items funcione */
+    place-items: center;
+    min-width: 1200px; /* Esta línea debe quedarse como propiedad normal */
+  }  
+
+/* Tipografía por jerarquía */
+h1 {
+  @apply text-3xl md:text-4xl font-bold;
+}
+
+h2 {
+  @apply text-2xl md:text-3xl font-semibold;
+}
+
+h3 {
+  @apply text-xl md:text-2xl font-medium;
+}
+
+h4, h5, h6 {
+  @apply text-lg font-normal;
+}
+
+p {
+  @apply text-base md:text-lg text-grisOscuro;
+}
+
+a {
+  @apply text-azulClaro hover:underline transition duration-200;
+}
+
+/* Imágenes y medios */
+img, video {
+  @apply max-w-full h-auto block;
+}
+
+/* Botones base */
+button {
+  @apply cursor-pointer font-medium transition duration-200 ease-in-out;
+  @apply focus:outline-none focus:ring-2 focus:ring-azulClaro;
+}
+
+/* Formularios */
+input, textarea, select {
+  @apply border border-grisMedio rounded-md px-3 py-2;
+  @apply focus:ring-2 focus:ring-azulClaro focus:outline-none;
+  @apply w-full text-sm;
+}
+
+/* Contenedor general */
+.container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* Espaciado vertical entre secciones */
+.section-spacing {
+  @apply py-8 md:py-12;
+}

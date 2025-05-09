@@ -1,0 +1,14 @@
+/* index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* componentes reutilizables navbar*/ 
+
+.btn-login {
+  @apply bg-azulClaro text-blanco rounded-full px-4 py-3 hover:bg-blue-600;
+}
+.btn-register {
+  @apply bg-grisOscuro text-blanco rounded-full px-4 py-3 hover:bg-gray-700;
+}
+

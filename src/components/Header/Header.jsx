@@ -1,74 +1,59 @@
-import Slider from "react-slick"
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import styles from './Header.module.css';
 import producto1 from '../../assets/coding-screen.jpg';
-import producto2 from '../../assets/hard-disk.jpg';
-import producto3 from '../../assets/ram.png';
-
+import producto2 from '../../assets/hard-disk.jpg';// No se está usando
+import producto3 from '../../assets/btnPlan.jpg';
 
 const Header = () => {
+    return (
+        <div className="flex flex-col md:flex-row gap-8 p-6 md:p-8 rounded-[40px] mx-auto md:ml-14 max-w-7xl">
+            {/* Columna izquierda */}
+            <div className="flex flex-col flex-1 gap-4 min-w-0 md:min-w-[250px] md:max-w-[500px]">
+                {/* Sección Software */}
+                <div className="relative overflow-hidden rounded-[30px] shadow-[0_8px_30px_rgba(0,0,0,0.7)] hover:scale-105 transition-transform">
+                    <div className="absolute bottom-5 left-5 z-10 text-white text-xl md:text-2xl font-bold [text-shadow:2px_2px_4px_rgba(0,0,0,0.7)]">
+                        Software
+                    </div>
+                    <div className="relative w-full aspect-video">
+                        <img 
+                            src={producto1} 
+                            alt="Software" 
+                            className="w-full h-full object-cover rounded-[30px]" 
+                        />
+                        <div className="absolute inset-0 bg-black/60 z-[1] rounded-[30px]"></div>
+                    </div>
+                </div>
 
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 2,
-        slidesToScroll: 1,
-        autoplay: true,
-        speed: 1500,
-        autoplaySpeed: 2000,
-        cssEase: "linear"
-    };
-return(
-    <div className={styles.headerContainer}>
-  <div className={styles.header}>
-    <div className={styles.leftColumn}>
-      <div className={styles.headerLeft}>
-        <div className={styles.titleOverlay}>Software</div>
-            <Slider {...settings}>
-                <div className={styles.slide}>
-                    <img src={producto1} alt="Software" />
-                    <div className={styles.overlay}></div>
+                {/* Sección Hardware */}
+                <div className="relative overflow-hidden rounded-[30px] shadow-[0_8px_30px_rgba(0,0,0,0.7)] hover:scale-105 transition-transform">
+                    <div className="absolute bottom-5 left-5 z-10 text-white text-xl md:text-2xl font-bold [text-shadow:2px_2px_4px_rgba(0,0,0,0.7)]">
+                        Hardware
+                    </div>
+                    <div className="relative w-full aspect-video">
+                        <img 
+                            src={producto2} 
+                            alt="Hardware" 
+                            className="w-full h-full object-cover rounded-[30px]" 
+                        />
+                        <div className="absolute inset-0 bg-black/60 z-[1] rounded-[30px]"></div>
+                    </div>
                 </div>
-                <div className={styles.slide}>
-                    <img src={producto2} alt="Software 2" />
-                    <div className={styles.overlay}></div>
-                </div>
-            </Slider>
-      </div>
-      <div className={styles.headerLeft}>
-        <div className={styles.titleOverlay}>Hardware</div>
-        <Slider className={styles.slide}{...settings}>
-                <div className={styles.slide}>
-                            <img src={producto1} alt="Software" />
-                            <div className={styles.overlay}></div>
-                        </div>
-                <div className={styles.slide}>
-                    <img src={producto2} alt="Software 2" />
-                    <div className={styles.overlay}></div>
-                </div>
-        </Slider>
-      </div>
-    </div>
+            </div>
 
-    <div className={styles.headerRight}>
-    <div className={styles.titleOverlay}>Plantillas</div>
-      <Slider {...settings}>
-      <div className={styles.slideRight}>
-                            <img src={producto1} alt="Software" />
-                            <div className={styles.overlay}></div>
-                        </div>
-                <div className={styles.slideRight}>
-                    <img src={producto2} alt="Software 2" />
-                    <div className={styles.overlay}></div>
+            {/* Columna derecha - Plantillas */}
+            <div className="flex-1 min-w-0 md:min-w-[250px] md:max-w-[500px] relative overflow-hidden rounded-[30px] shadow-[0_8px_30px_rgba(0,0,0,0.7)] hover:scale-105 transition-transform">
+                <div className="absolute bottom-5 left-5 z-10 text-white text-xl md:text-2xl font-bold [text-shadow:2px_2px_4px_rgba(0,0,0,0.7)]">
+                    Plantillas
                 </div>
-        <div className={styles.slideRight}><img src={producto3} alt="Producto 3" /><div className={styles.overlay}></div></div>
-      </Slider>
-    </div>
-  </div>
-</div>
-);
+                <div className="relative w-full h-full md:aspect-square">
+                    <img 
+                        src={producto3} 
+                        alt="Plantillas" 
+                        className="w-full h-full object-cover rounded-[30px]" 
+                    />
+                    <div className="absolute inset-0 bg-black/60 z-[1] rounded-[30px]"></div>
+                </div>
+            </div>
+        </div>
+    );
 };
 
 export default Header;

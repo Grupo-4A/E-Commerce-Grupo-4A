@@ -1,49 +1,48 @@
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
-import styles from "./Footer.module.css";
 import { FaX } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className={styles.footer}>
-      <div className={styles.footerContainer}>
+    <footer className="bg-gray-800 text-gray-100 p-10 rounded-3xl">
+      <div className="flex flex-wrap justify-around gap-5 max-w-6xl mx-auto">
         
         {/* Sección de Información */}
-        <div className={styles.footerSection}>
-          <h2 className={styles.title}>PandoraTech</h2>
-          <p className={styles.text}>Tu ecommerce de confianza con los mejores productos y envíos rápidos. Garantía y calidad aseguradas.</p>
+        <div className="flex-1 min-w-[250px] max-w-[300px]">
+          <h2 className="text-xl mb-3 text-white">PandoraTech</h2>
+          <p className="text-sm leading-6">Tu ecommerce de confianza con los mejores productos y envíos rápidos. Garantía y calidad aseguradas.</p>
         </div>
 
         {/* Enlaces Rápidos */}
-        <div className={styles.footerSection}>
-          <h2 className={styles.title}>Enlaces Rápidos</h2>
-          <ul className={styles.list}>
-            <li><a href="/about" className={styles.link}>Sobre Nosotros</a></li>
-            <li><a href="/shop" className={styles.link}>Tienda</a></li>
-            <li><a href="/contact" className={styles.link}>Contacto</a></li>
-            <li><a href="/faq" className={styles.link}>Preguntas Frecuentes</a></li>
+        <div className="flex-1 min-w-[250px] max-w-[300px]">
+          <h2 className="text-xl mb-3 text-white">Enlaces Rápidos</h2>
+          <ul className="list-none p-0">
+            <li className="mb-2"><a href="/about" className="text-gray-300 no-underline transition-colors duration-300 hover:text-blue-500">Sobre Nosotros</a></li>
+            <li className="mb-2"><a href="/shop" className="text-gray-300 no-underline transition-colors duration-300 hover:text-blue-500">Tienda</a></li>
+            <li className="mb-2"><a href="/contact" className="text-gray-300 no-underline transition-colors duration-300 hover:text-blue-500">Contacto</a></li>
+            <li className="mb-2"><a href="/faq" className="text-gray-300 no-underline transition-colors duration-300 hover:text-blue-500">Preguntas Frecuentes</a></li>
           </ul>
         </div>
 
         {/* Contacto */}
-        <div className={styles.footerSection}>
-          <h2 className={styles.title}>Contacto</h2>
-          <p className={styles.text}>📍 Calle 123, Ciudad</p>
-          <p className={styles.text}>📞 +123 456 7890</p>
-          <p className={styles.text}>📧 info@ecommerce.com</p>
+        <div className="flex-1 min-w-[250px] max-w-[300px]">
+          <h2 className="text-xl mb-3 text-white">Contacto</h2>
+          <p className="text-sm leading-6">📍 Calle 123, Ciudad</p>
+          <p className="text-sm leading-6">📞 +123 456 7890</p>
+          <p className="text-sm leading-6">📧 info@ecommerce.com</p>
 
           {/* Redes Sociales */}
-          <div className={styles.footerSocials}>
-            <a href="#" className={styles.socialIcon}><FaFacebookF /></a>
-            <a href="#" className={styles.socialIcon}><FaX /></a>
-            <a href="#" className={styles.socialIcon}><FaInstagram /></a>
-            <a href="#" className={styles.socialIcon}><FaLinkedinIn /></a>
+          <div className="flex justify-center gap-4 mt-3">
+            <a href="#" className="text-white text-xl transition-colors duration-300 hover:text-blue-500"><FaFacebookF /></a>
+            <a href="#" className="text-white text-xl transition-colors duration-300 hover:text-blue-500"><FaX /></a>
+            <a href="#" className="text-white text-xl transition-colors duration-300 hover:text-blue-500"><FaInstagram /></a>
+            <a href="#" className="text-white text-xl transition-colors duration-300 hover:text-blue-500"><FaLinkedinIn /></a>
           </div>
         </div>
       </div>
 
       {/* Derechos de Autor */}
-      <div className={styles.footerBottom}>
-        &copy; {new Date().getFullYear()} Ecommerce. Todos los derechos reservados.
+      <div className="mt-5 text-xs border-t border-gray-700 pt-3 text-center">
+        © {new Date().getFullYear()} Ecommerce. Todos los derechos reservados.
       </div>
     </footer>
   );
