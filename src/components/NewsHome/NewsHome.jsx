@@ -1,18 +1,27 @@
-import Offer from '../Offers/Offers';
 import Logo from '../../assets/Logo.png';
-import Hardware from '../../assets/btnHar.jpg'; // Usaremos esta como imagen de fondo, reemplázala si necesitas otra
+import NewsImage from '../../assets/chasis.png'; // Reemplaza con la imagen deseada
+import BackgroundImage from '../../assets/btnHar.jpg'; // Usaremos esta como imagen de fondo, reemplázala si necesitas otra
 
-const OfferHome = ({ product }) => {
+const NewsHome = () => {
   return (
-    <div className="relative w-full h-[400px] my-10 overflow-hidden rounded-[30px] shadow-[0_8px_30px_rgba(0,0,0,0.7)]">
+    <div className="w-full h-[400px] my-10 relative overflow-hidden rounded-[30px] shadow-[0_8px_30px_rgba(0,0,0,0.7)]" >
       <img
-        src={Hardware}
+        src={BackgroundImage}
         alt="Background"
         className="w-full h-full object-cover rounded-[30px]"
       />
       <div className="absolute inset-0 bg-black/60 z-[1] rounded-[30px]">
         <div className="flex w-full h-full p-10 box-border">
-          {/* Sección izquierda */}
+          {/* Sección izquierda con Imagen */}
+          <div className="flex-1 flex items-center justify-center">
+            <img
+              src={NewsImage}
+              alt="News Highlight"
+              className="w-[460px] h-[320px] object-cover rounded-[30px]"
+            />
+          </div>
+
+          {/* Sección derecha con Textos */}
           <div className="flex-1 flex flex-col justify-center max-w-[500px]">
             <img
               src={Logo}
@@ -27,15 +36,10 @@ const OfferHome = ({ product }) => {
               Ver más
             </button>
           </div>
-
-          {/* Sección derecha con Offer */}
-          <div className="flex-1 flex items-center justify-center">
-            <Offer product={product} />
-          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default OfferHome;
+export default NewsHome;
