@@ -7,6 +7,7 @@ import UserProfilePage from "../pages/UserProfilePage";
 import OffersPage from "../pages/OffersPage";
 import SupportPage from "../pages/SupportPage";
 import NewsPage from "../pages/NewsPage";
+import ShoppinCartPage  from "../pages/ShoppingCartPage";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "soporte",
         element: <SupportPage />,
+      },
+      {
+        path: "carrito",
+        element: <ShoppinCartPage />,
       },
     ],
   },

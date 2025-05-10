@@ -18,14 +18,15 @@ const Navbar = () => {
   />
   <FiSearch className="text-gray-800 ml-1" />
 </div>
-          <ul className="flex list-none gap-4 ml-3 text-white cursor-pointer">
-            <li><a onClick={() => navigate("/")}>Inicio</a></li>
-            <li><a onClick={() => navigate("/categorias")} >Categorías</a></li>
-            <li><a onClick={() => navigate("/ofertas")} >Ofertas</a></li>
-            <li><a onClick={() => navigate("/blog")}>Blog</a></li>
-            <li><a onClick={() => navigate("/soporte")}>Soporte</a></li>
+          <ul className="flex list-none gap-4 ml-3 text-white cursor-pointer ">
+            <li><a className="hover:text-blue-600"onClick={() => navigate("/")}>Inicio</a></li>
+            <li><a className="hover:text-blue-600" onClick={() => navigate("/categorias")} >Categorías</a></li>
+            <li><a className="hover:text-blue-600" onClick={() => navigate("/ofertas")} >Ofertas</a></li>
+            <li><a className="hover:text-blue-600" onClick={() => navigate("/blog")}>Blog</a></li>
+            <li><a className="hover:text-blue-600" onClick={() => navigate("/soporte")}>Soporte</a></li>
           </ul>
-          <FiShoppingCart className="text-white text-xl ml-5" />
+          <FiShoppingCart className="text-white text-xl ml-5 cursor-pointer hover:text-blue-600" 
+          onClick={() => navigate("/carrito")}/>
         </div>
       </nav>
 
