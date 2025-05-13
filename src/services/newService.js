@@ -2,7 +2,7 @@
 
 export const fetchNews = async () => {
   try {
-    const response = await fetch("http://localhost:3000/api/news"); // Ajusta la URL si tu backend es distinto
+    const response = await fetch("http://localhost:3000/api/news"); 
     if (!response.ok) {
       throw new Error("Error al obtener las noticias");
     }

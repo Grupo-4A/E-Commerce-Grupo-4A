@@ -6,6 +6,7 @@ const Shortcut = () => {
   return (
     <div className="flex justify-center gap-5 m-5">
       <div className="flex gap-12">
+        {/* Botón de Software */}
         <button className="flex items-center bg-gray-800 text-gray-100 rounded-2xl w-[300px] h-[100px] border-none cursor-pointer transition-colors duration-300 ease-in-out overflow-hidden relative p-2.5 justify-start hover:bg-gray-700">
           <div className="flex flex-col items-start justify-center flex-1 pr-2.5">
             <h4 className="text-base font-bold m-0">Software</h4>
@@ -14,6 +15,7 @@ const Shortcut = () => {
           <img src={Software} alt="Software" className="h-full w-[35%] object-cover rounded-2xl ml-2.5" />
         </button>
 
+        {/* Botón de Plantillas */}
         <button className="flex items-center bg-gray-800 text-gray-100 rounded-2xl w-[300px] h-[100px] border-none cursor-pointer transition-colors duration-300 ease-in-out overflow-hidden relative p-2.5 justify-start hover:bg-gray-700">
           <div className="flex flex-col items-start justify-center flex-1 pr-2.5">
             <h4 className="text-base font-bold m-0">Plantillas Frontend</h4>
@@ -22,6 +24,7 @@ const Shortcut = () => {
           <img src={Plantillas} alt="Plantillas" className="h-full w-[35%] object-cover rounded-2xl ml-2.5" />
         </button>
 
+        {/* Botón de Hardware */}
         <button className="flex items-center bg-grisOscuro text-gray-100 rounded-2xl w-[300px] h-[100px] border-none cursor-pointer transition-colors duration-300 ease-in-out overflow-hidden relative p-2.5 justify-start hover:bg-gray-700">
           <div className="flex flex-col items-start justify-center flex-1 pr-2.5">
             <h4 className="text-base font-bold m-0">Hardware</h4>
