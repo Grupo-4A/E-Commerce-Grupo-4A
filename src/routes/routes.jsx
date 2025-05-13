@@ -8,6 +8,7 @@ import OffersPage from "../pages/OffersPage";
 import SupportPage from "../pages/SupportPage";
 import NewsPage from "../pages/NewsPage";
 import ShoppinCartPage  from "../pages/ShoppingCartPage";
+import Productdescription from "../pages/ Productdescription";
 
 const router = createBrowserRouter([
   {
@@ -22,7 +23,8 @@ const router = createBrowserRouter([
         path: "categorias",
         element: <ProductListPage />,
       },
-      {path: "ofertas",
+      {
+        path: "ofertas",
         element: <OffersPage />,
       },
       {
@@ -36,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: "carrito",
         element: <ShoppinCartPage />,
+      },
+      {
+        path: "descripcion",
+        element: <Productdescription />,
       },
     ],
   },
