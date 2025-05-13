@@ -2,8 +2,15 @@
 import { Button, Card, Image, Text } from "@chakra-ui/react";
 import { FiShoppingCart } from "react-icons/fi";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const ProductCard = ({ product }) => {
+  const navigate = useNavigate(); // Initialize navigate
+
+  const handleClick = () => {
+    navigate("/descripcion", { state: { product } }); // Navigate to the description page with product data
+  };
+
   return (
     <Card.Root
       maxW="250px"
@@ -18,6 +25,8 @@ const ProductCard = ({ product }) => {
       _hover={{ transform: "scale(1.05)" }}
       bg="#F3F4F6"
       m="10px"
+      cursor="pointer" // Indicate it's clickable
+      onClick={handleClick} // Attach the click handler
     >
       <Image
         w="100%"
@@ -51,6 +60,11 @@ const ProductCard = ({ product }) => {
           fontSize="14px"
           transition="background 0.3s"
           _hover={{ bg: "#059669" }}
+          onClick={(e) => {
+            e.stopPropagation(); // Prevent card click when button is clicked
+            // Handle "Add to cart" logic here
+            console.log(`Added ${product.name} to cart`);
+          }}
         >
           <FiShoppingCart />
           Add to cart
