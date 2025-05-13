@@ -50,7 +50,6 @@ const ImageCarousel = () => {
         {/* Lado izquierdo - Carrusel de imágenes */}
         <div className="image-gallery-section">
           <div className="gallery-container">
-            <h2 className="gallery-title">Galería de Imágenes</h2>
             
             {/* Imagen principal */}
             <div className="image-main-container">
@@ -75,12 +74,7 @@ const ImageCarousel = () => {
                 <ChevronRight size={24} />
               </button>
               
-              {/* Título de la imagen actual */}
-              <div className="image-title-overlay">
-                <h3 className="image-title">
-                  {images[currentImageIndex].title}
-                </h3>
-              </div>
+
             </div>
             
             {/* Indicadores de puntos */}
@@ -93,8 +87,6 @@ const ImageCarousel = () => {
                 />
               ))}
             </div>
-            
-            
           </div>
         </div>
 
