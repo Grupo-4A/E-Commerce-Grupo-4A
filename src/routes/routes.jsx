@@ -8,7 +8,7 @@ import OffersPage from "../pages/OffersPage";
 import SupportPage from "../pages/SupportPage";
 import NewsPage from "../pages/NewsPage";
 import ShoppinCartPage  from "../pages/ShoppingCartPage";
-import Productdescription from "../pages/ Productdescription";
+import Productdescription from "../pages/Productdescription";
 
 const router = createBrowserRouter([
   {
