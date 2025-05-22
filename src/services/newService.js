@@ -1,4 +1,3 @@
-// src/services/newsService.js
 
 export const fetchNews = async () => {
   try {
