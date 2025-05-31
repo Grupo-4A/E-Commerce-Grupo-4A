@@ -54,7 +54,7 @@ button {
 }
 
 /* Formularios */
-input, textarea, select {
+textarea, select {
   @apply border border-grisMedio rounded-md px-3 py-2;
   @apply focus:ring-2 focus:ring-azulClaro focus:outline-none;
   @apply w-full text-sm;
