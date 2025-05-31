@@ -1,57 +1,96 @@
 import React from "react";
-import styles from "./Filters.module.css";
 
 const Filters = () => {
   return (
-    <div className={styles.filtersContainer}>
-      <p className={styles.title}>Filtrar por:</p>
+    <div className="w-64 h-[calc(100vh-100px)] overflow-y-auto bg-gray-800 text-gray-100 p-6 rounded-xl shadow-lg sticky top-6 transition-all duration-300 hover:shadow-xl">
+      <p className="text-xl font-bold mb-6">Filtrar por:</p>
 
       {/* Marca */}
-      <p className={styles.subtitle}>Marca</p>
-      <div className={styles.checkboxGroup}>
-        <label className={styles.checkboxLabel}><input type="checkbox" /> Apple</label>
-        <label className={styles.checkboxLabel}><input type="checkbox" /> HP</label>
-        <label className={styles.checkboxLabel}><input type="checkbox" /> Lenovo</label>
-        <label className={styles.checkboxLabel}><input type="checkbox" /> Dell</label>
-        <label className={styles.checkboxLabel}><input type="checkbox" /> Asus</label>
+      <p className="text-sm font-semibold mt-6 mb-3">Marca</p>
+      <div className="space-y-2">
+        <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
+          <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> Apple
+        </label>
+        <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
+          <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> HP
+        </label>
+        <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
+          <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> Lenovo
+        </label>
+        <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
+          <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> Dell
+        </label>
+        <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
+          <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> Asus
+        </label>
       </div>
 
       {/* Rango de Precio */}
-      <p className={styles.subtitle}>Rango de Precio</p>
-      <div className={styles.rangeGroup}>
-        <input type="number" placeholder="Mínimo $" className={styles.rangeInput} />
-        <input type="number" placeholder="Máximo $" className={styles.rangeInput} />
+      <p className="text-sm font-semibold mt-6 mb-3">Rango de Precio</p>
+      <div className="flex gap-2">
+        <input
+          type="number"
+          placeholder="Mínimo $"
+          className="w-1/2 p-2 bg-gray-700 border border-gray-600 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        />
+        <input
+          type="number"
+          placeholder="Máximo $"
+          className="w-1/2 p-2 bg-gray-700 border border-gray-600 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        />
       </div>
 
       {/* Estado del Producto */}
-      <p className={styles.subtitle}>Estado</p>
-      <div className={styles.checkboxGroup}>
-        <label className={styles.checkboxLabel}><input type="checkbox" /> Nuevo</label>
-        <label className={styles.checkboxLabel}><input type="checkbox" /> Usado</label>
-        <label className={styles.checkboxLabel}><input type="checkbox" /> Reacondicionado</label>
+      <p className="text-sm font-semibold mt-6 mb-3">Estado</p>
+      <div className="space-y-2">
+        <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
+          <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> Nuevo
+        </label>
+        <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
+          <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> Usado
+        </label>
+        <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
+          <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> Reacondicionado
+        </label>
       </div>
 
       {/* Categoría */}
-      <p className={styles.subtitle}>Categoría</p>
-      <div className={styles.checkboxGroup}>
-        <label className={styles.checkboxLabel}><input type="checkbox" /> Hardware</label>
-        <label className={styles.checkboxLabel}><input type="checkbox" /> Software</label>
-        <label className={styles.checkboxLabel}><input type="checkbox" /> Plantilla Frontend</label>
+      <p className="text-sm font-semibold mt-6 mb-3">Categoría</p>
+      <div className="space-y-2">
+        <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
+          <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> Hardware
+        </label>
+        <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
+          <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> Software
+        </label>
+        <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
+          <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> Plantilla Frontend
+        </label>
       </div>
 
       {/* Compatibilidad */}
-      <p className={styles.subtitle}>Compatibilidad</p>
-      <div className={styles.checkboxGroup}>
-        <label className={styles.checkboxLabel}><input type="checkbox" /> Windows</label>
-        <label className={styles.checkboxLabel}><input type="checkbox" /> macOS</label>
-        <label className={styles.checkboxLabel}><input type="checkbox" /> Linux</label>
-        <label className={styles.checkboxLabel}><input type="checkbox" /> Android</label>
-        <label className={styles.checkboxLabel}><input type="checkbox" /> iOS</label>
+      <p className="text-sm font-semibold mt-6 mb-3">Compatibilidad</p>
+      <div className="space-y-2">
+        <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
+          <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> Windows
+        </label>
+        <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
+          <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> macOS
+        </label>
+        <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
+          <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> Linux
+        </label>
+        <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
+          <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> Android
+        </label>
+        <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
+          <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> iOS
+        </label>
       </div>
 
       {/* RAM */}
-      <p className={styles.subtitle}>RAM</p>
-      <select>
+      <p className="text-sm font-semibold mt-6 mb-3">RAM</p>
+      <select className="w-full p-2 bg-gray-700 border border-gray-600 rounded-lg text-sm text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">
         <option value="" disabled>Selecciona RAM</option>
         <option value="4">4GB</option>
         <option value="8">8GB</option>
@@ -60,8 +99,8 @@ const Filters = () => {
       </select>
 
       {/* Espacio en Disco */}
-      <p className={styles.subtitle}>Espacio en Disco (mínimo requerido)</p>
-      <select>
+      <p className="text-sm font-semibold mt-6 mb-3">Espacio en Disco (mínimo requerido)</p>
+      <select className="w-full p-2 bg-gray-700 border border-gray-600 rounded-lg text-sm text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">
         <option value="" disabled>Selecciona espacio</option>
         <option value="32">32GB</option>
         <option value="64">64GB</option>
@@ -72,10 +111,14 @@ const Filters = () => {
       </select>
 
       {/* Licencia */}
-      <p className={styles.subtitle}>Licencia</p>
-      <div className={styles.checkboxGroup}>
-        <label className={styles.checkboxLabel}><input type="checkbox" /> Libre</label>
-        <label className={styles.checkboxLabel}><input type="checkbox" /> Propietaria</label>
+      <p className="text-sm font-semibold mt-6 mb-3">Licencia</p>
+      <div className="space-y-2">
+        <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
+          <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> Libre
+        </label>
+        <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
+          <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> Propietaria
+        </label>
       </div>
     </div>
   );
