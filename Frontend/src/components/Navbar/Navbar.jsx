@@ -1,9 +1,31 @@
+import React, { useState } from 'react'; // Importa useState
 import { useNavigate } from 'react-router-dom';
 import { FiSearch, FiShoppingCart } from 'react-icons/fi';
 import Logo from '../../assets/Logo.png';
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState(''); // Estado para el valor del input de búsqueda
+
+  // Maneja los cambios en el input de búsqueda
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  // Maneja el envío de la búsqueda (al presionar Enter o hacer clic en el icono)
+  const handleSearchSubmit = (e) => {
+    // Si es un evento de teclado, solo actúa si se presiona Enter
+    if (e.key === 'Enter' || e.type === 'click') {
+      if (searchTerm.trim()) {
+        // Navega a la página de productos con el término de búsqueda como parámetro de consulta
+        // `encodeURIComponent` asegura que caracteres especiales en la búsqueda se manejen correctamente
+        navigate(`/products?search=${encodeURIComponent(searchTerm.trim())}`);
+      } else {
+        // Si la barra de búsqueda se limpia y se envía, navega a productos sin término de búsqueda
+        navigate(`/products`);
+      }
+    }
+  };
 
   return (
     <div className="flex justify-between items-center mx-8 my-4 font-sans">
@@ -11,7 +33,12 @@ const Navbar = () => {
       <nav className="flex bg-gray-800 rounded-3xl px-3 py-1">
         <div className="flex items-center gap-4">
           {/* Logo */}
-          <img src={Logo} alt="Logo" className="h-10" />
+          <img
+            src={Logo}
+            alt="Logo"
+            className="h-10 cursor-pointer" // Añade cursor-pointer para indicar que es clickeable
+            onClick={() => navigate("/")} // Navega a la página de inicio al hacer clic en el logo
+          />
 
           {/* Buscador */}
           <div className="flex items-center bg-gray-200 rounded-full px-2 py-0.5 h-8 border border-gray-300">
@@ -19,8 +46,14 @@ const Navbar = () => {
               type="text"
               placeholder="Buscar..."
               className="bg-transparent border-none outline-none w-full text-sm px-2 h-full"
+              value={searchTerm} // Enlaza el valor del input al estado
+              onChange={handleSearchChange} // Maneja los cambios del input
+              onKeyDown={handleSearchSubmit} // Activa la búsqueda al presionar Enter
             />
-            <FiSearch className="text-gray-800 ml-1" />
+            <FiSearch
+              className="text-gray-800 ml-1 cursor-pointer" // Añade cursor-pointer
+              onClick={handleSearchSubmit} // Activa la búsqueda al hacer clic en el icono
+            />
           </div>
 
           {/* Enlaces de navegación */}
