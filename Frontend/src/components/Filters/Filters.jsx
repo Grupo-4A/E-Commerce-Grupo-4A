@@ -1,7 +1,58 @@
 import React, { useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
 
-const Filters = () => {
+// Mapeos de IDs para los filtros (ajusta estos IDs según tu base de datos)
+const BRAND_OPTIONS = [
+  { id: 1, name: "Apple" },
+  { id: 2, name: "HP" },
+  { id: 3, name: "Lenovo" },
+  { id: 4, name: "Dell" },
+  { id: 5, name: "Asus" },
+];
+
+const STATUS_OPTIONS = [
+  { id: 1, name: "Nuevo" },
+  { id: 2, name: "Usado" },
+  { id: 3, name: "Reacondicionado" },
+];
+
+const CATEGORY_OPTIONS = [
+  { id: 1, name: "Hardware" },
+  { id: 2, name: "Software" },
+  { id: 3, name: "Plantilla Frontend" },
+];
+
+const COMPATIBILITY_OPTIONS = [
+  { id: 1, name: "Windows" },
+  { id: 2, name: "macOS" },
+  { id: 3, name: "Linux" },
+  { id: 4, name: "Android" },
+  { id: 5, name: "iOS" },
+];
+
+const LICENSE_OPTIONS = [
+  { id: 1, name: "Libre" },
+  { id: 2, name: "Propietaria" },
+];
+
+const RAM_OPTIONS = [
+  { value: 4, label: "4GB" },
+  { value: 8, label: "8GB" },
+  { value: 16, label: "16GB" },
+  { value: 32, label: "32GB" },
+];
+
+const STORAGE_OPTIONS = [
+  { value: "32GB", label: "32GB" },
+  { value: "64GB", label: "64GB" },
+  { value: "128GB", label: "128GB" },
+  { value: "256GB", label: "256GB" },
+  { value: "512GB", label: "512GB" },
+  { value: "1TB", label: "1TB" }, // Asegúrate que tu DB guarda "1TB" o "1000GB" si es el caso
+];
+
+
+const Filters = ({ filters, onFilterChange }) => {
   const [openSections, setOpenSections] = useState({
     brands: true,
     price: false,
@@ -17,9 +68,30 @@ const Filters = () => {
     setOpenSections((prev) => ({ ...prev, [section]: !prev[section] }));
   };
 
+  const handleCheckboxChange = (filterName, value, type = 'id') => {
+    const currentValues = filters[filterName] || [];
+    let newValues;
+    if (currentValues.includes(value)) {
+      newValues = currentValues.filter((item) => item !== value);
+    } else {
+      newValues = [...currentValues, value];
+    }
+    onFilterChange({ [filterName]: newValues });
+  };
+
+  const handlePriceChange = (e, type) => {
+    const value = e.target.value === '' ? null : Number(e.target.value);
+    onFilterChange({ [type]: value });
+  };
+
+  const handleSelectChange = (e, filterName) => {
+    const value = e.target.value === '' ? null : (filterName === 'ramValues' ? Number(e.target.value) : e.target.value);
+    onFilterChange({ [filterName]: value ? [value] : [] }); // Para select, enviamos un array con un solo valor o vacío
+  };
+
   return (
     <div className="w-64 h-[calc(100vh-100px)] overflow-y-auto bg-gray-800 text-gray-100 p-6 rounded-xl shadow-lg sticky top-6 transition-all duration-300 hover:shadow-xl">
-      <p className="text-xl  font-bold mb-6">Filtrar por:</p>
+      <p className="text-xl font-bold mb-6">Filtrar por:</p>
 
       {/* Marca */}
       <div className="mb-4">
@@ -32,21 +104,17 @@ const Filters = () => {
         </button>
         {openSections.brands && (
           <div className="space-y-2">
-            <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
-              <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> Apple
-            </label>
-            <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
-              <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> HP
-            </label>
-            <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
-              <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> Lenovo
-            </label>
-            <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
-              <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> Dell
-            </label>
-            <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
-              <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> Asus
-            </label>
+            {BRAND_OPTIONS.map((brand) => (
+              <label key={brand.id} className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
+                <input
+                  type="checkbox"
+                  className="rounded text-indigo-600 focus:ring-indigo-500"
+                  value={brand.id}
+                  checked={(filters.brandIds || []).includes(brand.id)}
+                  onChange={() => handleCheckboxChange('brandIds', brand.id)}
+                /> {brand.name}
+              </label>
+            ))}
           </div>
         )}
       </div>
@@ -66,11 +134,15 @@ const Filters = () => {
               type="number"
               placeholder="Mínimo $"
               className="w-1/2 p-2 bg-gray-700 border border-gray-600 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              value={filters.minPrice || ''}
+              onChange={(e) => handlePriceChange(e, 'minPrice')}
             />
             <input
               type="number"
               placeholder="Máximo $"
               className="w-1/2 p-2 bg-gray-700 border border-gray-600 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              value={filters.maxPrice || ''}
+              onChange={(e) => handlePriceChange(e, 'maxPrice')}
             />
           </div>
         )}
@@ -87,15 +159,17 @@ const Filters = () => {
         </button>
         {openSections.condition && (
           <div className="space-y-2">
-            <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
-              <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> Nuevo
-            </label>
-            <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
-              <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> Usado
-            </label>
-            <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
-              <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> Reacondicionado
-            </label>
+            {STATUS_OPTIONS.map((status) => (
+              <label key={status.id} className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
+                <input
+                  type="checkbox"
+                  className="rounded text-indigo-600 focus:ring-indigo-500"
+                  value={status.id}
+                  checked={(filters.statusIds || []).includes(status.id)}
+                  onChange={() => handleCheckboxChange('statusIds', status.id)}
+                /> {status.name}
+              </label>
+            ))}
           </div>
         )}
       </div>
@@ -111,15 +185,17 @@ const Filters = () => {
         </button>
         {openSections.category && (
           <div className="space-y-2">
-            <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
-              <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> Hardware
-            </label>
-            <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
-              <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> Software
-            </label>
-            <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
-              <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> Plantilla Frontend
-            </label>
+            {CATEGORY_OPTIONS.map((category) => (
+              <label key={category.id} className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
+                <input
+                  type="checkbox"
+                  className="rounded text-indigo-600 focus:ring-indigo-500"
+                  value={category.id}
+                  checked={(filters.categoryIds || []).includes(category.id)}
+                  onChange={() => handleCheckboxChange('categoryIds', category.id)}
+                /> {category.name}
+              </label>
+            ))}
           </div>
         )}
       </div>
@@ -135,21 +211,17 @@ const Filters = () => {
         </button>
         {openSections.compatibility && (
           <div className="space-y-2">
-            <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
-              <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> Windows
-            </label>
-            <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
-              <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> macOS
-            </label>
-            <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
-              <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> Linux
-            </label>
-            <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
-              <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> Android
-            </label>
-            <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
-              <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> iOS
-            </label>
+            {COMPATIBILITY_OPTIONS.map((compatibility) => (
+              <label key={compatibility.id} className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
+                <input
+                  type="checkbox"
+                  className="rounded text-indigo-600 focus:ring-indigo-500"
+                  value={compatibility.id}
+                  checked={(filters.compatibilityIds || []).includes(compatibility.id)}
+                  onChange={() => handleCheckboxChange('compatibilityIds', compatibility.id)}
+                /> {compatibility.name}
+              </label>
+            ))}
           </div>
         )}
       </div>
@@ -164,12 +236,15 @@ const Filters = () => {
           <FaChevronDown className={`transform ${openSections.ram ? "rotate-180" : ""} transition-transform`} />
         </button>
         {openSections.ram && (
-          <select className="w-full p-2 bg-gray-700 border border-gray-600 rounded-lg text-sm text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <select
+            className="w-full p-2 bg-gray-700 border border-gray-600 rounded-lg text-sm text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            value={(filters.ramValues && filters.ramValues[0]) || ''}
+            onChange={(e) => handleSelectChange(e, 'ramValues')}
+          >
             <option value="" disabled>Selecciona RAM</option>
-            <option value="4">4GB</option>
-            <option value="8">8GB</option>
-            <option value="16">16GB</option>
-            <option value="32">32GB</option>
+            {RAM_OPTIONS.map((ram) => (
+              <option key={ram.value} value={ram.value}>{ram.label}</option>
+            ))}
           </select>
         )}
       </div>
@@ -184,14 +259,15 @@ const Filters = () => {
           <FaChevronDown className={`transform ${openSections.storage ? "rotate-180" : ""} transition-transform`} />
         </button>
         {openSections.storage && (
-          <select className="w-full p-2 bg-gray-700 border border-gray-600 rounded-lg text-sm text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <select
+            className="w-full p-2 bg-gray-700 border border-gray-600 rounded-lg text-sm text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            value={(filters.diskSpaceValues && filters.diskSpaceValues[0]) || ''}
+            onChange={(e) => handleSelectChange(e, 'diskSpaceValues')}
+          >
             <option value="" disabled>Selecciona espacio</option>
-            <option value="32">32GB</option>
-            <option value="64">64GB</option>
-            <option value="128">128GB</option>
-            <option value="256">256GB</option>
-            <option value="512">512GB</option>
-            <option value="1000">1TB</option>
+            {STORAGE_OPTIONS.map((storage) => (
+              <option key={storage.value} value={storage.value}>{storage.label}</option>
+            ))}
           </select>
         )}
       </div>
@@ -207,12 +283,17 @@ const Filters = () => {
         </button>
         {openSections.license && (
           <div className="space-y-2">
-            <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
-              <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> Libre
-            </label>
-            <label className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
-              <input type="checkbox" className="rounded text-indigo-600 focus:ring-indigo-500" /> Propietaria
-            </label>
+            {LICENSE_OPTIONS.map((license) => (
+              <label key={license.id} className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
+                <input
+                  type="checkbox"
+                  className="rounded text-indigo-600 focus:ring-indigo-500"
+                  value={license.id}
+                  checked={(filters.licenseIds || []).includes(license.id)}
+                  onChange={() => handleCheckboxChange('licenseIds', license.id)}
+                /> {license.name}
+              </label>
+            ))}
           </div>
         )}
       </div>
