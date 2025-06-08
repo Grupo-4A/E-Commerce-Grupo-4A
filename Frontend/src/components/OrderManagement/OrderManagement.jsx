@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { FiEye, FiCheckCircle, FiXCircle, FiFilter } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
-const OrderManagementComponent = () => {
+const OrderManagement = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -144,4 +144,4 @@ const OrderManagementComponent = () => {
   );
 };
 
-export default OrderManagementComponent;
+export default OrderManagement;
