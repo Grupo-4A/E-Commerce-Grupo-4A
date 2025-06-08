@@ -1,16 +1,19 @@
+// frontend/src/components/NavbarProfile/NavbarProfile.jsx
 import React, { useState, useEffect } from "react";
 import { FiMenu, FiBell, FiChevronDown } from "react-icons/fi";
 import Logo from '../../assets/Logo.png';
+import { useNavigate } from 'react-router-dom';
 
-const Header = ({ onOpenSidebar }) => {
+const NavbarProfile = ({ onOpenSidebar }) => { // ¡VERIFICA QUE RECIBE 'onOpenSidebar'!
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
-  // Cerrar el menú desplegable cuando se hace clic fuera
   useEffect(() => {
-    const handleClickOutside = () => {
-      if (menuOpen) setMenuOpen(false);
+    const handleClickOutside = (event) => {
+      if (menuOpen && event.target && !event.target.closest('.user-menu-dropdown-container')) {
+        setMenuOpen(false);
+      }
     };
-
     document.addEventListener("click", handleClickOutside);
     return () => {
       document.removeEventListener("click", handleClickOutside);
@@ -18,11 +21,18 @@ const Header = ({ onOpenSidebar }) => {
   }, [menuOpen]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 flex justify-between items-center p-2 bg-grisOscuro  border-b border-gray-200 h-16 z-20">
+    <header className="fixed top-0 left-0 right-0 flex justify-between items-center p-2 bg-grisOscuro border-b border-gray-200 h-16 z-20">
       <div className="flex items-center">
         <button
           className="bg-azulClaro border-none text-2xl cursor-pointer p-2 mr-2 flex items-center justify-center rounded-3xl hover:bg-gray-100 transition-colors"
-          onClick={onOpenSidebar}
+          onClick={() => { // ¡AÑADIDO PARA DEBUG!
+            console.log("DEBUG: Botón FiMenu clicado."); // ¡AÑADIDO PARA DEBUG!
+            if (onOpenSidebar) { // ¡AÑADIDO PARA DEBUG! Verifica si la prop existe
+              onOpenSidebar();
+            } else {
+              console.error("DEBUG: onOpenSidebar no es una función o no está definida."); // ¡AÑADIDO PARA DEBUG!
+            }
+          }}
         >
           <FiMenu />
         </button>
@@ -39,7 +49,7 @@ const Header = ({ onOpenSidebar }) => {
           <FiBell />
         </button>
 
-        <div className="relative flex items-center gap-2 cursor-pointer">
+        <div className="relative flex items-center gap-2 cursor-pointer user-menu-dropdown-container">
           <div
             onClick={(e) => {
               e.stopPropagation();
@@ -59,7 +69,6 @@ const Header = ({ onOpenSidebar }) => {
             <div className="absolute top-12 right-0 bg-grisOscuro border border-grisClaro rounded-lg shadow-lg w-48 z-30">
               <div className="text-blanco hover:bg-slate-500 transition-colors p-3 cursor-pointer">Perfil</div>
               <div className="text-blanco hover:bg-slate-500 transition-colors p-3 cursor-pointer">Configuración</div>
-              <div className="text-blanco hover:bg-slate-500 transition-colors p-3 cursor-pointer">Facturación</div>
               <div className="border-t border-gray-200 my-1"></div>
               <div className="text-blanco hover:bg-slate-500 transition-colors p-3 cursor-pointer">Cerrar sesión</div>
             </div>
@@ -70,4 +79,4 @@ const Header = ({ onOpenSidebar }) => {
   );
 };
 
-export default Header;
+export default NavbarProfile;
