@@ -13,13 +13,12 @@ const Navbar = () => {
 
   const handleSearchSubmit = (e) => {
     if (e.key === 'Enter' || e.type === 'click') {
-      // **CORRECCIÓN AQUÍ:**
-      // Navega a la ruta de React Router para la página de productos.
+     
       // ProductListPage debe estar configurado para leer el parámetro 'search'.
       if (searchTerm.trim()) {
         navigate(`/products?search=${encodeURIComponent(searchTerm.trim())}`);
       } else {
-        navigate(`/products`); // Navega a la página de productos sin término de búsqueda
+        navigate(`/products`); 
       }
     }
   };
