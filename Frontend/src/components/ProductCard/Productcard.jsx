@@ -1,62 +1,41 @@
-// components/ProductCard.jsx
-import { Button, Card, Image, Text } from "@chakra-ui/react";
+import React from "react";
 import { FiShoppingCart } from "react-icons/fi";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 
 const ProductCard = ({ product }) => {
   return (
-    <Card.Root
-      maxW="250px"
-      display="flex"
-      flexWrap="wrap"
-      gap="5px"
-      borderRadius="15px"
-      overflow="hidden"
-      maxH="460px"
-      boxShadow="0px 6px 8px rgba(15, 15, 15, 0.5)"
-      transition="transform 0.2s ease-in-out"
-      _hover={{ transform: "scale(1.05)" }}
-      bg="#F3F4F6"
-      m="10px"
+    <div
+      className="max-w-[250px] flex flex-wrap gap-1.25 rounded-2xl overflow-hidden max-h-[460px] shadow-lg transition-transform duration-200 ease-in-out hover:scale-105 bg-gray-200 m-2.5"
     >
-      <Image
-        w="100%"
-        objectFit="cover"
+      <img
+        className="w-full h-48 object-cover"
         src={product.image}
         alt={product.name}
       />
-      <Card.Body gap="2" maxW="260px">
-        <Card.Title>{product.name}</Card.Title>
-        <Card.Description wordBreak="break-word" whiteSpace="normal" overflowWrap="break-word">
+      <div className="p-2 gap-2 max-w-[260px]">
+        <h3 className="text-lg font-semibold">{product.name}</h3>
+        <p className="text-sm text-gray-700 break-words">
           {product.description}
-        </Card.Description>
-        <Text display="flex" justifyContent="flex-end" color="gold" fontSize="18px" pr="2">
+        </p>
+        <div className="flex justify-end text-yellow-400 text-xl pr-2">
           <AiFillStar />
           <AiFillStar />
           <AiFillStar />
           <AiFillStar />
           <AiOutlineStar />
-        </Text>
-        <Text textStyle="2xl" fontWeight="medium" letterSpacing="tight" textAlign="right" color="#1E3A8A">
+        </div>
+        <p className="text-2xl font-medium text-blue-900 text-right">
           ${product.price}
-        </Text>
-      </Card.Body>
-      <Card.Footer gap="2" mt="5px" justifyContent="flex-end" p="10px 5px">
-        <Button
-          variant="ghost"
-          bg="#10B981"
-          color="white"
-          borderRadius="10px"
-          cursor="pointer"
-          fontSize="14px"
-          transition="background 0.3s"
-          _hover={{ bg: "#059669" }}
+        </p>
+      </div>
+      <div className="flex gap-2 mt-1.25 justify-end p-2.5">
+        <button
+          className="bg-emerald-500 text-white rounded-xl cursor-pointer text-sm transition-colors duration-300 hover:bg-emerald-700 flex items-center px-3 py-1"
         >
-          <FiShoppingCart />
-          Add to cart
-        </Button>
-      </Card.Footer>
-    </Card.Root>
+          <FiShoppingCart className="mr-1" /> Add to cart
+        </button>
+      </div>
+    </div>
   );
 };
 
