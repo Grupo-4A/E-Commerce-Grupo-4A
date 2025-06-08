@@ -1,14 +1,20 @@
 // frontend/src/components/SidebarProfile/SidebarProfile.jsx
 import React from "react";
-import { FiHome, FiTrendingUp, FiCompass, FiStar, FiSettings, FiX } from "react-icons/fi";
+import { FiHome, FiBox, FiShoppingCart, FiUsers, FiTrendingUp, FiEdit, FiHeadphones, FiBarChart2, FiSettings, FiX } from "react-icons/fi";
+
+
 import { useNavigate } from "react-router-dom";
 
 const LinkItems = [
-  { name: "Home", icon: <FiHome />, path: "/" },
-  { name: "Trending", icon: <FiTrendingUp />, path: "/trending" },
-  { name: "Explore", icon: <FiCompass />, path: "/explore" },
-  { name: "Favourites", icon: <FiStar />, path: "/favourites" },
-  { name: "Settings", icon: <FiSettings />, path: "/settings" },
+  { name: "Dashboard", icon: <FiHome />, path: "/admin" }, // Ruta principal del panel
+  { name: "Productos", icon: <FiBox />, path: "/admin/products" },
+  { name: "Pedidos", icon: <FiShoppingCart />, path: "/admin/orders" },
+  { name: "Clientes", icon: <FiUsers />, path: "/admin/customers" }, // Cambié a FiUsers, pero puedes usar IoPersonAddOutline
+  { name: "Marketing", icon: <FiTrendingUp />, path: "/admin/marketing" },
+  { name: "Contenido", icon: <FiEdit />, path: "/admin/content" },
+  { name: "Soporte", icon: <FiHeadphones />, path: "/admin/support" },
+  { name: "Reportes", icon: <FiBarChart2 />, path: "/admin/reports" },
+  { name: "Configuración", icon: <FiSettings />, path: "/admin/settings" },
 ];
 
 const SidebarProfile = ({ isOpen, onClose }) => {
@@ -29,14 +35,14 @@ const SidebarProfile = ({ isOpen, onClose }) => {
       ></div>
 
       <div
-        className={`fixed top-0 left-0 h-full w-64 bg-white border-r border-gray-200 z-30 transform transition-transform duration-300 ease-in-out md:transform-none md:z-10 ${
+        className={`fixed top-0 left-0 h-full w-64 bg-grisOscuro border-r border-gray-200 z-30 transform transition-transform duration-300 ease-in-out md:transform-none md:z-10 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
         <div className="flex justify-between items-center p-4 border-b border-gray-200 h-16">
           <h2 className="text-xl font-bold">Logo</h2>
           <button
-            className="bg-transparent border-none text-xl cursor-pointer flex items-center justify-center p-1 rounded-md hover:bg-gray-100 transition-colors"
+            className="bg-transparent border-none text-xl cursor-pointer flex items-center justify-center p-1 rounded-md hover:bg-grisClaro transition-colors"
             onClick={onClose}
           >
             <FiX />
@@ -47,7 +53,7 @@ const SidebarProfile = ({ isOpen, onClose }) => {
           {LinkItems.map((item) => (
             <button
               key={item.name}
-              className="flex items-center p-3 text-gray-700 hover:bg-gray-100 transition-colors rounded-md w-full text-left cursor-pointer"
+              className="flex items-center p-3 text-blanco hover:bg-slate-500 transition-colors rounded-md w-full text-left cursor-pointer"
               onClick={() => handleNavigation(item.path)}
             >
               <span className="mr-3 text-xl flex items-center">{item.icon}</span>
