@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import HomePage from "../pages/HomePage";
 import { Inicio } from "../layouts/login/login";
-import ProductListPage from "../pages/ProductListPage";
+import ProductListPage from "../pages/ProductListPage"; // Importa tu ProductListPage
 import UserProfilePage from "../pages/UserProfilePage";
 import OffersPage from "../pages/OffersPage";
 import SupportPage from "../pages/SupportPage";
@@ -19,10 +19,15 @@ const router = createBrowserRouter([
         element: <HomePage />
       },
       {
-        path: "categorias",
+        path: "categorias", 
         element: <ProductListPage />,
       },
-      {path: "ofertas",
+      {
+        path: "products",
+        element: <ProductListPage />,
+      },
+      {
+        path: "ofertas",
         element: <OffersPage />,
       },
       {
@@ -44,10 +49,10 @@ const router = createBrowserRouter([
     element: <Inicio />,
   },
   {
-    path: "/perfil", 
+    path: "/perfil",
     element: <UserProfilePage />,
   },
-  
+ 
 ]);
 
 export default router;

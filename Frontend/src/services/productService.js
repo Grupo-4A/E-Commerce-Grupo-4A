@@ -149,4 +149,8 @@ export const deleteProduct = async (id) => {
     console.error(`Error en deleteProduct para ID ${id}:`, error);
     throw error;
   }
+
+  
+
+
 };

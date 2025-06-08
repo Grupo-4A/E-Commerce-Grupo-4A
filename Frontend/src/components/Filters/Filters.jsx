@@ -1,40 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react"; // Asegúrate de importar useEffect
 import { FaChevronDown } from "react-icons/fa";
+import {
+  fetchBrands,
+  fetchCategories,
+  fetchStatuses,
+  fetchCompatibilities,
+  fetchLicenses,
+} from '../../services/dataService'; // Importa los servicios de datos maestros
 
-// Mapeos de IDs para los filtros (ajusta estos IDs según tu base de datos)
-const BRAND_OPTIONS = [
-  { id: 1, name: "Apple" },
-  { id: 2, name: "HP" },
-  { id: 3, name: "Lenovo" },
-  { id: 4, name: "Dell" },
-  { id: 5, name: "Asus" },
-];
-
-const STATUS_OPTIONS = [
-  { id: 1, name: "Nuevo" },
-  { id: 2, name: "Usado" },
-  { id: 3, name: "Reacondicionado" },
-];
-
-const CATEGORY_OPTIONS = [
-  { id: 1, name: "Hardware" },
-  { id: 2, name: "Software" },
-  { id: 3, name: "Plantilla Frontend" },
-];
-
-const COMPATIBILITY_OPTIONS = [
-  { id: 1, name: "Windows" },
-  { id: 2, name: "macOS" },
-  { id: 3, name: "Linux" },
-  { id: 4, name: "Android" },
-  { id: 5, name: "iOS" },
-];
-
-const LICENSE_OPTIONS = [
-  { id: 1, name: "Libre" },
-  { id: 2, name: "Propietaria" },
-];
-
+// Opciones estáticas para RAM y Espacio en Disco (si no las manejas en la DB, se mantienen)
 const RAM_OPTIONS = [
   { value: 4, label: "4GB" },
   { value: 8, label: "8GB" },
@@ -48,9 +22,8 @@ const STORAGE_OPTIONS = [
   { value: "128GB", label: "128GB" },
   { value: "256GB", label: "256GB" },
   { value: "512GB", label: "512GB" },
-  { value: "1TB", label: "1TB" }, // Asegúrate que tu DB guarda "1TB" o "1000GB" si es el caso
+  { value: "1TB", label: "1TB" },
 ];
-
 
 const Filters = ({ filters, onFilterChange }) => {
   const [openSections, setOpenSections] = useState({
@@ -64,11 +37,48 @@ const Filters = ({ filters, onFilterChange }) => {
     license: false,
   });
 
+  // NUEVOS ESTADOS para almacenar las opciones de filtro obtenidas del backend
+  const [brandsOptions, setBrandsOptions] = useState([]);
+  const [categoriesOptions, setCategoriesOptions] = useState([]);
+  const [statusesOptions, setStatusesOptions] = useState([]);
+  const [compatibilitiesOptions, setCompatibilitiesOptions] = useState([]);
+  const [licensesOptions, setLicensesOptions] = useState([]);
+  const [loadingOptions, setLoadingOptions] = useState(true);
+  const [optionsError, setOptionsError] = useState(null);
+
+  // useEffect para cargar las opciones al montar el componente
+  useEffect(() => {
+    const loadFilterOptions = async () => {
+      setLoadingOptions(true);
+      setOptionsError(null);
+      try {
+        const [brands, categories, statuses, compatibilities, licenses] = await Promise.all([
+          fetchBrands(),
+          fetchCategories(),
+          fetchStatuses(),
+          fetchCompatibilities(),
+          fetchLicenses(),
+        ]);
+        setBrandsOptions(brands);
+        setCategoriesOptions(categories);
+        setStatusesOptions(statuses);
+        setCompatibilitiesOptions(compatibilities);
+        setLicensesOptions(licenses);
+      } catch (error) {
+        console.error("Error al cargar las opciones de filtro:", error);
+        setOptionsError('No se pudieron cargar algunas opciones de filtro.');
+      } finally {
+        setLoadingOptions(false);
+      }
+    };
+    loadFilterOptions();
+  }, []); // El array de dependencias vacío asegura que se ejecuta solo una vez al montar
+
   const toggleSection = (section) => {
     setOpenSections((prev) => ({ ...prev, [section]: !prev[section] }));
   };
 
-  const handleCheckboxChange = (filterName, value, type = 'id') => {
+  const handleCheckboxChange = (filterName, value) => {
     const currentValues = filters[filterName] || [];
     let newValues;
     if (currentValues.includes(value)) {
@@ -86,8 +96,25 @@ const Filters = ({ filters, onFilterChange }) => {
 
   const handleSelectChange = (e, filterName) => {
     const value = e.target.value === '' ? null : (filterName === 'ramValues' ? Number(e.target.value) : e.target.value);
-    onFilterChange({ [filterName]: value ? [value] : [] }); // Para select, enviamos un array con un solo valor o vacío
+    onFilterChange({ [filterName]: value ? [value] : [] });
   };
+
+  // Mostrar mensaje de carga o error mientras se obtienen las opciones
+  if (loadingOptions) {
+    return (
+      <div className="w-64 bg-gray-800 text-gray-100 p-6 rounded-xl shadow-lg flex items-center justify-center h-48">
+        Cargando filtros...
+      </div>
+    );
+  }
+
+  if (optionsError) {
+    return (
+      <div className="w-64 bg-red-800 text-white p-6 rounded-xl shadow-lg flex items-center justify-center h-48">
+        Error al cargar filtros: {optionsError}
+      </div>
+    );
+  }
 
   return (
     <div className="w-64 h-[calc(100vh-100px)] overflow-y-auto bg-gray-800 text-gray-100 p-6 rounded-xl shadow-lg sticky top-6 transition-all duration-300 hover:shadow-xl">
@@ -104,7 +131,7 @@ const Filters = ({ filters, onFilterChange }) => {
         </button>
         {openSections.brands && (
           <div className="space-y-2">
-            {BRAND_OPTIONS.map((brand) => (
+            {brandsOptions.map((brand) => ( // <<-- AHORA USA brandsOptions (dinámicas)
               <label key={brand.id} className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
                 <input
                   type="checkbox"
@@ -119,7 +146,7 @@ const Filters = ({ filters, onFilterChange }) => {
         )}
       </div>
 
-      {/* Rango de Precio */}
+      {/* Rango de Precio (se mantiene estático, no viene de la DB) */}
       <div className="mb-4">
         <button
           onClick={() => toggleSection("price")}
@@ -159,7 +186,7 @@ const Filters = ({ filters, onFilterChange }) => {
         </button>
         {openSections.condition && (
           <div className="space-y-2">
-            {STATUS_OPTIONS.map((status) => (
+            {statusesOptions.map((status) => ( // <<-- AHORA USA statusesOptions (dinámicas)
               <label key={status.id} className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
                 <input
                   type="checkbox"
@@ -185,7 +212,7 @@ const Filters = ({ filters, onFilterChange }) => {
         </button>
         {openSections.category && (
           <div className="space-y-2">
-            {CATEGORY_OPTIONS.map((category) => (
+            {categoriesOptions.map((category) => ( // <<-- AHORA USA categoriesOptions (dinámicas)
               <label key={category.id} className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
                 <input
                   type="checkbox"
@@ -211,7 +238,7 @@ const Filters = ({ filters, onFilterChange }) => {
         </button>
         {openSections.compatibility && (
           <div className="space-y-2">
-            {COMPATIBILITY_OPTIONS.map((compatibility) => (
+            {compatibilitiesOptions.map((compatibility) => ( // <<-- AHORA USA compatibilitiesOptions (dinámicas)
               <label key={compatibility.id} className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
                 <input
                   type="checkbox"
@@ -226,7 +253,7 @@ const Filters = ({ filters, onFilterChange }) => {
         )}
       </div>
 
-      {/* RAM */}
+      {/* RAM (estático, como en tu código original) */}
       <div className="mb-4">
         <button
           onClick={() => toggleSection("ram")}
@@ -249,7 +276,7 @@ const Filters = ({ filters, onFilterChange }) => {
         )}
       </div>
 
-      {/* Espacio en Disco */}
+      {/* Espacio en Disco (estático, como en tu código original) */}
       <div className="mb-4">
         <button
           onClick={() => toggleSection("storage")}
@@ -283,7 +310,7 @@ const Filters = ({ filters, onFilterChange }) => {
         </button>
         {openSections.license && (
           <div className="space-y-2">
-            {LICENSE_OPTIONS.map((license) => (
+            {licensesOptions.map((license) => ( // <<-- AHORA USA licensesOptions (dinámicas)
               <label key={license.id} className="flex items-center gap-2 text-sm cursor-pointer hover:text-gray-300 transition-colors">
                 <input
                   type="checkbox"
