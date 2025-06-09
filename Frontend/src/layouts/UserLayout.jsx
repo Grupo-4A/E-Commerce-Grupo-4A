@@ -1,37 +1,24 @@
 // frontend/src/layouts/UserLayout.jsx
-import React from 'react'; // Eliminamos useState
+import React from 'react';
 import { Outlet } from 'react-router-dom';
 import NavbarProfile from '../components/NavbarProfile/NavbarProfile';
 import SidebarProfile from '../components/SidebarProfile/SidebarProfile';
 
 const UserLayout = () => {
- 
-
   return (
-  
-    <div className="relative h-screen bg-gray-100">
-
-     
-      <SidebarProfile />
-
-      
+    <div className="bg-gray-100 min-h-screen">
+      {/* Navbar fijo en la parte superior */}
       <NavbarProfile />
-
-      <div className="
-        absolute
-        top-16   /* ALTURA de la Navbar (64px) */
-        left-64  /* ANCHO del Sidebar (256px) */
-        right-0
-        bottom-0
-        flex flex-col /* Para que <main> pueda usar flex-1 */
-        overflow-y-auto
-        bg-gray-50
-      ">
-        
-        <main className="flex-1 p-4 md:p-6">
+      
+      {/* Sidebar fijo a la izquierda */}
+      <SidebarProfile />
+      
+      {/* Contenedor principal que toma en cuenta navbar y sidebar fijos */}
+      <main className="fixed top-16 left-64 right-0 bottom-0 overflow-auto bg-gray-50">
+        <div className="p-4 md:p-6 h-full">
           <Outlet />
-        </main>
-      </div>
+        </div>
+      </main>
     </div>
   );
 };

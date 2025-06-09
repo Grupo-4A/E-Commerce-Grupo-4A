@@ -1,10 +1,9 @@
 // frontend/src/components/NavbarProfile/NavbarProfile.jsx
 import React, { useState, useEffect } from "react";
-import { FiBell, FiChevronDown } from "react-icons/fi"; // FiMenu ya no es necesario
+import { FiBell, FiChevronDown } from "react-icons/fi";
 import Logo from '../../assets/Logo.png';
 import { useNavigate } from 'react-router-dom';
 
-// Ya no recibe 'onOpenSidebar' como prop
 const NavbarProfile = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
@@ -22,15 +21,14 @@ const NavbarProfile = () => {
   }, [menuOpen]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 flex justify-between items-center p-2 bg-grisOscuro border-b border-gray-200 h-16 z-20">
+    <header className="fixed top-0 left-0 right-0 h-16 z-50 flex items-center justify-between px-4 bg-grisOscuro shadow-md">
       <div className="flex items-center">
-      
         <img
-            src={Logo}
-            alt="Logo"
-            className="h-10 cursor-pointer"
-            onClick={() => navigate("/")}
-          />
+          src={Logo}
+          alt="Logo"
+          className="h-10 cursor-pointer"
+          onClick={() => navigate("/")}
+        />
       </div>
 
       <div className="flex items-center gap-4">
@@ -55,7 +53,7 @@ const NavbarProfile = () => {
           </div>
 
           {menuOpen && (
-            <div className="absolute top-12 right-0 bg-grisOscuro border border-grisClaro rounded-lg shadow-lg w-48 z-30">
+            <div className="absolute top-12 right-0 bg-grisOscuro border border-grisClaro rounded-lg shadow-lg w-48 z-[60]">
               <div className="text-blanco hover:bg-slate-500 transition-colors p-3 cursor-pointer">Perfil</div>
               <div className="text-blanco hover:bg-slate-500 transition-colors p-3 cursor-pointer">Configuración</div>
               <div className="border-t border-gray-200 my-1"></div>

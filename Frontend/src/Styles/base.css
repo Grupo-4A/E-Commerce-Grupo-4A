@@ -11,6 +11,10 @@ html, body {
     @apply m-0 p-0 box-border;
     @apply bg-azulProfundo text-grisOscuro;
     @apply font-mono antialiased min-h-screen;
+
+    width: 100%;
+  height: 100%;
+  overflow-x: hidden;
     
     display: grid; /* necesario para que place-items funcione */
     place-items: center;
