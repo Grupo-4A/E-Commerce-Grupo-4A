@@ -280,5 +280,30 @@
 .form_container h1 svg {
   margin-right: 8px;
   vertical-align: middle;
-  color: #007bff;
+  color: #007bff; /* Color para los íconos del título del formulario */
 }
+
+/* Estilo para los mensajes de éxito/error en el formulario */
+.formMessage {
+  margin-top: 15px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  color: white; /* Color de texto predeterminado */
+  background-color: #e74c3c; /* Fondo rojo para errores */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Si quieres diferenciar mensajes de éxito, puedes añadir una clase específica */
+.formMessage.success {
+  background-color: #27ae60; /* Fondo verde para éxito */
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
