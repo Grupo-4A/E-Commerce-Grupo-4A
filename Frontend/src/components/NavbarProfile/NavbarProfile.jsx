@@ -1,10 +1,11 @@
 // frontend/src/components/NavbarProfile/NavbarProfile.jsx
 import React, { useState, useEffect } from "react";
-import { FiMenu, FiBell, FiChevronDown } from "react-icons/fi";
+import { FiBell, FiChevronDown } from "react-icons/fi"; // FiMenu ya no es necesario
 import Logo from '../../assets/Logo.png';
 import { useNavigate } from 'react-router-dom';
 
-const NavbarProfile = ({ onOpenSidebar }) => { // ¡VERIFICA QUE RECIBE 'onOpenSidebar'!
+// Ya no recibe 'onOpenSidebar' como prop
+const NavbarProfile = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -23,19 +24,7 @@ const NavbarProfile = ({ onOpenSidebar }) => { // ¡VERIFICA QUE RECIBE 'onOpenS
   return (
     <header className="fixed top-0 left-0 right-0 flex justify-between items-center p-2 bg-grisOscuro border-b border-gray-200 h-16 z-20">
       <div className="flex items-center">
-        <button
-          className="bg-azulClaro border-none text-2xl cursor-pointer p-2 mr-2 flex items-center justify-center rounded-3xl hover:bg-gray-100 transition-colors"
-          onClick={() => { // ¡AÑADIDO PARA DEBUG!
-            console.log("DEBUG: Botón FiMenu clicado."); // ¡AÑADIDO PARA DEBUG!
-            if (onOpenSidebar) { // ¡AÑADIDO PARA DEBUG! Verifica si la prop existe
-              onOpenSidebar();
-            } else {
-              console.error("DEBUG: onOpenSidebar no es una función o no está definida."); // ¡AÑADIDO PARA DEBUG!
-            }
-          }}
-        >
-          <FiMenu />
-        </button>
+      
         <img
             src={Logo}
             alt="Logo"
