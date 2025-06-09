@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FiSearch, FiShoppingCart } from 'react-icons/fi';
 import Logo from '../../assets/Logo.png';
@@ -6,6 +6,37 @@ import Logo from '../../assets/Logo.png';
 const Navbar = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
+  const [cartItemsCount, setCartItemsCount] = useState(0);
+
+  // Función para actualizar el contador del carrito
+  const updateCartCount = () => {
+    try {
+      const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      setCartItemsCount(totalItems);
+    } catch (error) {
+      console.error('Error al leer el carrito:', error);
+      setCartItemsCount(0);
+    }
+  };
+
+  useEffect(() => {
+    // Actualizar contador al cargar el componente
+    updateCartCount();
+    
+    // Escuchar eventos de actualización del carrito
+    const handleCartUpdate = () => {
+      updateCartCount();
+    };
+    
+    window.addEventListener('cartUpdated', handleCartUpdate);
+    window.addEventListener('storage', handleCartUpdate); // Para cambios desde otras pestañas
+    
+    return () => {
+      window.removeEventListener('cartUpdated', handleCartUpdate);
+      window.removeEventListener('storage', handleCartUpdate);
+    };
+  }, []);
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -13,8 +44,6 @@ const Navbar = () => {
 
   const handleSearchSubmit = (e) => {
     if (e.key === 'Enter' || e.type === 'click') {
-     
-      // ProductListPage debe estar configurado para leer el parámetro 'search'.
       if (searchTerm.trim()) {
         navigate(`/products?search=${encodeURIComponent(searchTerm.trim())}`);
       } else {
@@ -57,23 +86,31 @@ const Navbar = () => {
             <li><a className="hover:text-blue-600" onClick={() => navigate("/soporte")}>Soporte</a></li>
           </ul>
 
-          <FiShoppingCart
-            className="text-white text-xl ml-5 cursor-pointer hover:text-blue-600"
-            onClick={() => navigate("/carrito")}
-          />
+          {/* Icono del carrito con contador */}
+          <div className="relative">
+            <FiShoppingCart
+              className="text-white text-xl ml-5 cursor-pointer hover:text-blue-600 transition-colors"
+              onClick={() => navigate("/carrito")}
+            />
+            {cartItemsCount > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">
+                {cartItemsCount > 99 ? '99+' : cartItemsCount}
+              </span>
+            )}
+          </div>
         </div>
       </nav>
 
       <div className="flex gap-2 ml-20">
         <button
           onClick={() => navigate("/login")}
-          className="bg-blue-400 text-white rounded-full px-4 py-3 hover:bg-blue-600"
+          className="bg-blue-400 text-white rounded-full px-4 py-3 hover:bg-blue-600 transition-colors"
         >
           Iniciar Sesión
         </button>
         <button
           onClick={() => navigate("/login")}
-          className="bg-gray-800 text-white rounded-full px-4 py-3 hover:bg-gray-700"
+          className="bg-gray-800 text-white rounded-full px-4 py-3 hover:bg-gray-700 transition-colors"
         >
           Regístrate
         </button>
