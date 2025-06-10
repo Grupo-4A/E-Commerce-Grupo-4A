@@ -15,7 +15,7 @@ const HomePage = () => {
   useEffect(() => {
     const fetchFeaturedProducts = async () => {
       try {
-        const data = await getAllProducts(0, 5); // Traer los primeros 5 productos
+        const data = await getAllProducts(0, 4); // Traer los primeros 4 productos
         setFeaturedProducts(data.content || []);
       } catch (err) {
         console.error("Error al cargar productos destacados:", err);
