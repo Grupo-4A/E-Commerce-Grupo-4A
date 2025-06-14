@@ -26,7 +26,9 @@ Proyecto de ecommerce que ofrece productos de hardware, software y plantillas fr
 
 ---
 
-### 🧩 Diagrama de Arquitectura Backend
+### 🧩 Diagramas del Sistema
+
+### 🛠️ Arquitectura de Microservicios del Backend
 
 A continuación se presenta un diagrama de la arquitectura Backend, que representa cómo interactúan el frontend y los microservicios:
 
@@ -34,6 +36,9 @@ A continuación se presenta un diagrama de la arquitectura Backend, que represen
   <img src="Frontend/public/images/DiagramaArcq.png" alt="Diagrama de Arquitectura" width="550"/>
 </p>
 
+### 🧱 Diagrama de Componentes
+### 🧩 Diagrama de Clases
+### 📊 Diagrama BPMN
 
 
 ### 🔒 Funcionalidades
