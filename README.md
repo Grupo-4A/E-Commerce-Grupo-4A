@@ -37,7 +37,17 @@ A continuación se presenta un diagrama de la arquitectura Backend, que represen
 </p>
 
 ### 🧱 Diagrama de Componentes
+
+<p align="center">
+  <img src="Frontend/public/images/DiagramaComp.png" alt="Diagrama de Componentes" width="650"/>
+</p>
+
 ### 🧩 Diagrama de Clases
+
+<p align="center">
+  <img src="Frontend/public/images/DigramaClases.png" alt="Diagrama de Clases" width="750"/>
+</p>
+
 ### 📊 Diagrama BPMN
 
 
