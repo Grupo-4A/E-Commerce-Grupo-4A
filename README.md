@@ -50,6 +50,10 @@ A continuación se presenta un diagrama de la arquitectura Backend, que represen
 
 ### 📊 Diagrama BPMN
 
+<p align="center">
+  <img src="Frontend/public/images/DiagramBPNM.png" alt="Diagrama BPNM" width="750"/>
+</p>
+
 
 ### 🔒 Funcionalidades
 
