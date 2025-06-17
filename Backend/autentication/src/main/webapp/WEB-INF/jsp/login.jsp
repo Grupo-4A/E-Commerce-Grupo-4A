@@ -4,13 +4,13 @@
     <title>Login</title>
 </head>
 <body>
-    <h2>Iniciar sesión</h2>
+    <h2>Iniciar sesion</h2>
     <form id="loginForm">
         <label>Email:</label><br>
         <input type="email" id="email"><br>
-        <label>Contraseña:</label><br>
+        <label>Contrasena:</label><br>
         <input type="password" id="password"><br><br>
-        <button type="submit">Iniciar sesión</button>
+        <button type="submit">Iniciar sesion</button>
     </form>
 
     <script>

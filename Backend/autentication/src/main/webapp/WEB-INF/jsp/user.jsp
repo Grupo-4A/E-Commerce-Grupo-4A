@@ -12,7 +12,7 @@
 <body>
     <h2>Bienvenido <%= user %></h2>
     <form action="login" method="get">
-        <input type="submit" value="Cerrar sesión">
+        <input type="submit" value="Cerrar sesion">
     </form>
 </body>
 </html>

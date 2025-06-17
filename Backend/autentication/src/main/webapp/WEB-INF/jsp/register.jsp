@@ -8,7 +8,7 @@
     <form id="registerForm">
         <label>Email:</label><br>
         <input type="email" id="email"><br>
-        <label>Contraseña:</label><br>
+        <label>Contrasena:</label><br>
         <input type="password" id="password"><br><br>
         <button type="submit">Registrarse</button>
     </form>
