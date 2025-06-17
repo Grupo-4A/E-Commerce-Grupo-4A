@@ -39,7 +39,6 @@
     @RequestMapping("/api/products")
     @CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")// Permite CORS si es necesario
     public class ProductController {
-
         @Autowired
         private ProductRepository productRepository;
 
