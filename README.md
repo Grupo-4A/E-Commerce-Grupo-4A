@@ -1,3 +1,5 @@
+### E-Commerce PandoraTech
+
 Proyecto de ecommerce que ofrece productos de hardware, software y plantillas frontend. Utiliza un enfoque **modular con microservicios** para mantener la escalabilidad y separación de responsabilidades. El sistema cuenta con un frontend moderno en React y tres microservicios backend: autenticación, gestión de productos y noticias.
 
 ---
