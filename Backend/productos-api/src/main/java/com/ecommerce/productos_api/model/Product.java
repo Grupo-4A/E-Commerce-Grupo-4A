@@ -4,15 +4,20 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties; // ¡Importante!
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "products") // Nombre de la tabla en la DB
+@Table(name = "products")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) // <-- ¡Aquí está la corrección!
+@EqualsAndHashCode(callSuper = false)
+@ToString(exclude = {"brand", "os", "status", "category", "compatibility", "license"}) // Evita lazy loading en toString
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Product {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -20,19 +25,21 @@ public class Product {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY) // Relación Muchos a Uno con Brand
-    @JoinColumn(name = "brand_id") // Columna de clave foránea
-    private Brand brand; // Objeto Brand para acceder a sus propiedades
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "brand_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private Brand brand;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "os_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Os os;
 
     @Column(name = "ram")
     private Integer ram;
 
     @Column(name = "disk_space")
-    private String diskSpace; // Mapped to TEXT in DB
+    private String diskSpace;
 
     @Column(name = "price", nullable = false)
     private Double price;
@@ -40,25 +47,29 @@ public class Product {
     @Column(name = "image")
     private String image;
 
-    @Column(name = "description", columnDefinition = "TEXT") // Para descripciones largas
+    @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
     @Column(name = "on_offer")
-    private Boolean onOffer; // Mapped to BOOLEAN/TINYINT in DB
+    private Boolean onOffer = false; // Valor por defecto
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "status_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Status status;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Category category;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "compatibility_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Compatibility compatibility;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "license_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private License license;
 }
