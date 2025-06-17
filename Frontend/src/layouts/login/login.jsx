@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaUserAlt, FaEnvelope, FaLock } from "react-icons/fa";
 import styles from "./inicio.module.css";
+// ¡Importa tu servicio de autenticación! Asegúrate de que la ruta sea correcta.
+import AuthService from "../../services/auth.service.js"; // Asegúrate de que la ruta sea correcta
 
 export const Inicio = () => {
   const navigate = useNavigate();
   const [isRegistering, setIsRegistering] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [credentials, setCredentials] = useState({
-    email: "",
+    email: "", // Este campo se enviará como 'username' al backend de LoginServlet
     password: "",
   });
 
@@ -19,11 +21,14 @@ export const Inicio = () => {
     confirmPassword: "",
   });
 
+  const [message, setMessage] = useState(""); // Estado para mostrar mensajes al usuario (éxito/error)
+
   const handleSignUpClick = () => {
     setIsTransitioning(true);
     setTimeout(() => {
       setIsRegistering(true);
       setIsTransitioning(false);
+      setMessage(""); // Limpia cualquier mensaje anterior al cambiar de formulario
     }, 300);
   };
 
@@ -32,6 +37,7 @@ export const Inicio = () => {
     setTimeout(() => {
       setIsRegistering(false);
       setIsTransitioning(false);
+      setMessage(""); // Limpia cualquier mensaje anterior al cambiar de formulario
     }, 300);
   };
 
@@ -45,29 +51,85 @@ export const Inicio = () => {
     setRegisterData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleLoginSubmit = (e) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
+    setMessage(""); // Limpia mensajes de error/éxito anteriores
 
-    if (
-      credentials.email === "usuario@ejemplo.com" &&
-      credentials.password === "password123"
-    ) {
-      localStorage.setItem("isAuthenticated", "true");
-      navigate("/perfil");
-    } else {
-      alert("Credenciales incorrectas");
+    try {
+      // Llama al servicio de autenticación para intentar el login
+      const response = await AuthService.login(
+        credentials.email, // Se envía como 'username' al servlet
+        credentials.password
+      );
+
+      if (response.status === "success") {
+        setMessage(response.message);
+        // Si el login es exitoso, redirige al usuario al perfil
+        navigate("/perfil"); 
+      } else {
+        // Si el backend devuelve un error, muestra el mensaje
+        setMessage(response.message || "Error desconocido al iniciar sesión.");
+      }
+    } catch (error) {
+      // Maneja errores de red o errores de respuesta del servidor (ej. 401 Unauthorized)
+      console.error("Error al iniciar sesión:", error);
+      setMessage(
+        error.response?.data?.message || 
+        error.message || 
+        "Error de red. Asegúrate de que el servidor esté funcionando."
+      );
     }
   };
 
-  const handleRegisterSubmit = (e) => {
+  const handleRegisterSubmit = async (e) => {
     e.preventDefault();
-    console.log("Datos de registro:", registerData);
-    alert("Función de registro pendiente de implementar");
+    setMessage(""); // Limpia mensajes de error/éxito anteriores
+
+    // Validación básica en el frontend
+    if (registerData.password !== registerData.confirmPassword) {
+      setMessage("Las contraseñas no coinciden.");
+      return;
+    }
+    if (!registerData.username || !registerData.email || !registerData.password) {
+        setMessage("Por favor, rellena todos los campos.");
+        return;
+    }
+
+    try {
+      // Llama al servicio de autenticación para intentar el registro
+      const response = await AuthService.register(
+        registerData.username,
+        registerData.email,
+        registerData.password
+      );
+
+      if (response.status === "success") {
+        setMessage(response.message + " Ahora puedes iniciar sesión.");
+        // Opcional: Después de un registro exitoso, puedes redirigir al formulario de login
+        setTimeout(() => {
+            handleSignInClick(); // Vuelve al formulario de login
+            // Limpia el formulario de registro
+            setRegisterData({ username: "", email: "", password: "", confirmPassword: "" }); 
+        }, 1500); 
+      } else {
+        // Si el backend devuelve un error de registro
+        setMessage(response.message || "Error desconocido al registrar.");
+      }
+    } catch (error) {
+      // Maneja errores de red o errores de respuesta del servidor
+      console.error("Error al registrar:", error);
+      setMessage(
+        error.response?.data?.message || 
+        error.message || 
+        "Error de red. Asegúrate de que el servidor esté funcionando."
+      );
+    }
   };
 
   return (
     <div className={`${styles.page_container} ${isTransitioning ? styles.transitioning : ""}`}>
       {!isRegistering ? (
+        // --- SECCIÓN DE LOGIN ---
         <div className={styles.full_page_layout}>
           <div className={styles.left_section}>
             <div className={styles.left_content}>
@@ -92,13 +154,14 @@ export const Inicio = () => {
 
               <form onSubmit={handleLoginSubmit}>
                 <div className={styles.form_group}>
-                  <label><FaEnvelope /> Usuario</label>
+                  <label><FaEnvelope /> Correo</label>
                   <input
                     type="email"
-                    name="email"
+                    name="email" // Nombre para el estado local
                     value={credentials.email}
                     onChange={handleLoginChange}
                     placeholder="Correo electrónico"
+                    required
                   />
                 </div>
 
@@ -110,17 +173,21 @@ export const Inicio = () => {
                     value={credentials.password}
                     onChange={handleLoginChange}
                     placeholder="Contraseña"
+                    required
                   />
                 </div>
 
                 <button type="submit" className={styles.blue_button}>
                   INICIAR
                 </button>
+                {/* Mostrar mensajes de éxito o error */}
+                {message && <p className={styles.formMessage}>{message}</p>}
               </form>
             </div>
           </div>
         </div>
       ) : (
+        // --- SECCIÓN DE REGISTRO ---
         <div className={styles.full_page_layout}>
           <div className={styles.left_section_register}>
             <div className={styles.form_container}>
@@ -136,6 +203,7 @@ export const Inicio = () => {
                     value={registerData.username}
                     onChange={handleRegisterChange}
                     placeholder="Nombre de usuario"
+                    required
                   />
                 </div>
 
@@ -147,6 +215,7 @@ export const Inicio = () => {
                     value={registerData.email}
                     onChange={handleRegisterChange}
                     placeholder="Correo electrónico"
+                    required
                   />
                 </div>
 
@@ -158,6 +227,7 @@ export const Inicio = () => {
                     value={registerData.password}
                     onChange={handleRegisterChange}
                     placeholder="Contraseña"
+                    required
                   />
                 </div>
 
@@ -169,12 +239,15 @@ export const Inicio = () => {
                     value={registerData.confirmPassword}
                     onChange={handleRegisterChange}
                     placeholder="Confirmar contraseña"
+                    required
                   />
                 </div>
 
                 <button type="submit" className={styles.blue_button}>
                   REGISTRAR
                 </button>
+                {/* Mostrar mensajes de éxito o error */}
+                {message && <p className={styles.formMessage}>{message}</p>}
               </form>
             </div>
           </div>
