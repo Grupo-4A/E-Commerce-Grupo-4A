@@ -77,7 +77,7 @@ A continuación se presenta un diagrama de la arquitectura Backend, que represen
 
 ### 📦 Clonar el Proyecto
 ```bash
-git clone https://github.com/tu-usuario/tu-repo-ecommerce.git](https://github.com/Grupo-4A/E-Commerce-Grupo-4A.git
+git clone https://github.com/Grupo-4A/E-Commerce-Grupo-4A.git
 cd tu-repo-ecommerce
 ```
 ### 🖼 Frontend (React + Vite)
