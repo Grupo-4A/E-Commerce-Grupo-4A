@@ -149,8 +149,32 @@ export const deleteProduct = async (id) => {
     console.error(`Error en deleteProduct para ID ${id}:`, error);
     throw error;
   }
-
-  
-
-
 };
+
+// Función para subir imágenes
+export const uploadImage = async (file) => {
+  try {
+    // Aquí iría la lógica para subir la imagen a un servicio de almacenamiento
+    // Por ahora, es un placeholder. Necesitarás un endpoint de backend para esto.
+    console.warn("La función uploadImage es un placeholder. Implementa la lógica de subida de imágenes.");
+    
+    // Simulación de una respuesta exitosa
+    // En una implementación real, esto sería algo como:
+    // const formData = new FormData();
+    // formData.append('image', file);
+    // const response = await fetch(`${API_BASE_URL}/upload/image`, {
+    //   method: 'POST',
+    //   body: formData,
+    // });
+    // return await response.json();
+    
+    return { 
+      url: `http://example.com/images/${file.name}`, 
+      path: `/images/${file.name}` 
+    };
+  } catch (error) {
+    console.error("Error en uploadImage:", error);
+    throw error;
+  }
+};
+

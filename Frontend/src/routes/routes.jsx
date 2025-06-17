@@ -24,11 +24,13 @@ import MarketingManagement from "../components/MarketingManagement/MarketingMana
 import ContentManagement from "../components/ContentManagement/ContentManagement";
 import SupportManagement from "../components/SupportManagement/SupportManagement";
 import Reports from "../components/Reports/Reports.jsx";
- // ¡Asegúrate de que esta línea esté presente y correcta!
+import AddProduct from "../components/AddProduct/AddProduct"; 
+import EditProduct from "../components/EditProduct/EditProduct";
+// ¡Asegúrate de que esta línea esté presente y correcta!
 
 // Componentes de sub-páginas (pueden ser simples placeholders por ahora)
-const AddProduct = () => <div className="p-4 bg-white shadow rounded">Add New Product Form</div>;
-const EditProduct = () => <div className="p-4 bg-white shadow rounded">Edit Product Form</div>;
+
+
 const OrderDetail = () => <div className="p-4 bg-white shadow rounded">Order Detail View</div>;
 const CustomerDetail = () => <div className="p-4 bg-white shadow rounded">Customer Detail View</div>;
 const NewCoupon = () => <div className="p-4 bg-white shadow rounded">New Coupon Form</div>;

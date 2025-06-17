@@ -75,25 +75,14 @@ const Filters = ({ filters, onFilterChange }) => {
     setOpenSections((prev) => ({ ...prev, [section]: !prev[section] }));
   };
 
-  const handleCheckboxChange = (filterName, value) => {
-    const currentValues = filters[filterName] || [];
-    let newValues;
-    if (currentValues.includes(value)) {
-      newValues = currentValues.filter((item) => item !== value);
-    } else {
-      newValues = [...currentValues, value];
-    }
-    onFilterChange({ [filterName]: newValues });
+  const handleSelectChange = (e, filterName) => {
+    const value = e.target.value === '' ? null : (filterName === 'ramValues' ? Number(e.target.value) : e.target.value);
+    onFilterChange({ [filterName]: value ? [value] : [] });
   };
 
   const handlePriceChange = (e, type) => {
     const value = e.target.value === '' ? null : Number(e.target.value);
     onFilterChange({ [type]: value });
-  };
-
-  const handleSelectChange = (e, filterName) => {
-    const value = e.target.value === '' ? null : (filterName === 'ramValues' ? Number(e.target.value) : e.target.value);
-    onFilterChange({ [filterName]: value ? [value] : [] });
   };
 
   if (loadingOptions) {
@@ -126,19 +115,16 @@ const Filters = ({ filters, onFilterChange }) => {
           <FaChevronDown className={`transform ${openSections.brands ? "rotate-180" : ""} transition-transform duration-200 text-gray-400`} />
         </button>
         {openSections.brands && (
-          <div className="mt-3 space-y-2.5">
+          <select
+            className="mt-3 w-full p-2.5 bg-gray-800 border border-gray-700 rounded-lg text-sm text-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-gray-900 transition-all duration-150"
+            value={(filters.brandIds && filters.brandIds[0]) || ''}
+            onChange={(e) => handleSelectChange(e, 'brandIds')}
+          >
+            <option value="" disabled>Selecciona una marca</option>
             {brandsOptions.map((brand) => (
-              <label key={brand.id} className="flex items-center gap-3 text-sm cursor-pointer text-gray-300 hover:text-white transition-colors duration-150">
-                <input
-                  type="checkbox"
-                  className="w-4 h-4 rounded border-gray-600 text-indigo-500 focus:ring-indigo-400 focus:ring-offset-gray-900 bg-gray-800"
-                  value={brand.id}
-                  checked={(filters.brandIds || []).includes(brand.id)}
-                  onChange={() => handleCheckboxChange('brandIds', brand.id)}
-                /> {brand.name}
-              </label>
+              <option key={brand.id} value={brand.id}>{brand.name}</option>
             ))}
-          </div>
+          </select>
         )}
       </div>
 
@@ -181,19 +167,16 @@ const Filters = ({ filters, onFilterChange }) => {
           <FaChevronDown className={`transform ${openSections.condition ? "rotate-180" : ""} transition-transform duration-200 text-gray-400`} />
         </button>
         {openSections.condition && (
-          <div className="mt-3 space-y-2.5">
+          <select
+            className="mt-3 w-full p-2.5 bg-gray-800 border border-gray-700 rounded-lg text-sm text-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-gray-900 transition-all duration-150"
+            value={(filters.statusIds && filters.statusIds[0]) || ''}
+            onChange={(e) => handleSelectChange(e, 'statusIds')}
+          >
+            <option value="" disabled>Selecciona un estado</option>
             {statusesOptions.map((status) => (
-              <label key={status.id} className="flex items-center gap-3 text-sm cursor-pointer text-gray-300 hover:text-white transition-colors duration-150">
-                <input
-                  type="checkbox"
-                  className="w-4 h-4 rounded border-gray-600 text-indigo-500 focus:ring-indigo-400 focus:ring-offset-gray-900 bg-gray-800"
-                  value={status.id}
-                  checked={(filters.statusIds || []).includes(status.id)}
-                  onChange={() => handleCheckboxChange('statusIds', status.id)}
-                /> {status.name}
-              </label>
+              <option key={status.id} value={status.id}>{status.name}</option>
             ))}
-          </div>
+          </select>
         )}
       </div>
 
@@ -207,19 +190,16 @@ const Filters = ({ filters, onFilterChange }) => {
           <FaChevronDown className={`transform ${openSections.category ? "rotate-180" : ""} transition-transform duration-200 text-gray-400`} />
         </button>
         {openSections.category && (
-          <div className="mt-3 space-y-2.5">
+          <select
+            className="mt-3 w-full p-2.5 bg-gray-800 border border-gray-700 rounded-lg text-sm text-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-gray-900 transition-all duration-150"
+            value={(filters.categoryIds && filters.categoryIds[0]) || ''}
+            onChange={(e) => handleSelectChange(e, 'categoryIds')}
+          >
+            <option value="" disabled>Selecciona una categoría</option>
             {categoriesOptions.map((category) => (
-              <label key={category.id} className="flex items-center gap-3 text-sm cursor-pointer text-gray-300 hover:text-white transition-colors duration-150">
-                <input
-                  type="checkbox"
-                  className="w-4 h-4 rounded border-gray-600 text-indigo-500 focus:ring-indigo-400 focus:ring-offset-gray-900 bg-gray-800"
-                  value={category.id}
-                  checked={(filters.categoryIds || []).includes(category.id)}
-                  onChange={() => handleCheckboxChange('categoryIds', category.id)}
-                /> {category.name}
-              </label>
+              <option key={category.id} value={category.id}>{category.name}</option>
             ))}
-          </div>
+          </select>
         )}
       </div>
 
@@ -233,19 +213,16 @@ const Filters = ({ filters, onFilterChange }) => {
           <FaChevronDown className={`transform ${openSections.compatibility ? "rotate-180" : ""} transition-transform duration-200 text-gray-400`} />
         </button>
         {openSections.compatibility && (
-          <div className="mt-3 space-y-2.5">
+          <select
+            className="mt-3 w-full p-2.5 bg-gray-800 border border-gray-700 rounded-lg text-sm text-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-gray-900 transition-all duration-150"
+            value={(filters.compatibilityIds && filters.compatibilityIds[0]) || ''}
+            onChange={(e) => handleSelectChange(e, 'compatibilityIds')}
+          >
+            <option value="" disabled>Selecciona compatibilidad</option>
             {compatibilitiesOptions.map((compatibility) => (
-              <label key={compatibility.id} className="flex items-center gap-3 text-sm cursor-pointer text-gray-300 hover:text-white transition-colors duration-150">
-                <input
-                  type="checkbox"
-                  className="w-4 h-4 rounded border-gray-600 text-indigo-500 focus:ring-indigo-400 focus:ring-offset-gray-900 bg-gray-800"
-                  value={compatibility.id}
-                  checked={(filters.compatibilityIds || []).includes(compatibility.id)}
-                  onChange={() => handleCheckboxChange('compatibilityIds', compatibility.id)}
-                /> {compatibility.name}
-              </label>
+              <option key={compatibility.id} value={compatibility.id}>{compatibility.name}</option>
             ))}
-          </div>
+          </select>
         )}
       </div>
 
@@ -305,19 +282,16 @@ const Filters = ({ filters, onFilterChange }) => {
           <FaChevronDown className={`transform ${openSections.license ? "rotate-180" : ""} transition-transform duration-200 text-gray-400`} />
         </button>
         {openSections.license && (
-          <div className="mt-3 space-y-2.5">
+          <select
+            className="mt-3 w-full p-2.5 bg-gray-800 border border-gray-700 rounded-lg text-sm text-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-gray-900 transition-all duration-150"
+            value={(filters.licenseIds && filters.licenseIds[0]) || ''}
+            onChange={(e) => handleSelectChange(e, 'licenseIds')}
+          >
+            <option value="" disabled>Selecciona una licencia</option>
             {licensesOptions.map((license) => (
-              <label key={license.id} className="flex items-center gap-3 text-sm cursor-pointer text-gray-300 hover:text-white transition-colors duration-150">
-                <input
-                  type="checkbox"
-                  className="w-4 h-4 rounded border-gray-600 text-indigo-500 focus:ring-indigo-400 focus:ring-offset-gray-900 bg-gray-800"
-                  value={license.id}
-                  checked={(filters.licenseIds || []).includes(license.id)}
-                  onChange={() => handleCheckboxChange('licenseIds', license.id)}
-                /> {license.name}
-              </label>
+              <option key={license.id} value={license.id}>{license.name}</option>
             ))}
-          </div>
+          </select>
         )}
       </div>
     </div>
